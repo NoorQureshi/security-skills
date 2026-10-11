@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SploitAgent — security skills for AI agents</title>
+<title>Security Skills — security skills for AI agents</title>
 <meta name="description" content="An open library of 206 offensive and defensive security skills any AI agent can load on demand. For authorized pentest, bug bounty, and defense.">
-<meta property="og:title" content="SploitAgent — security skills for AI agents">
+<meta property="og:title" content="Security Skills — security skills for AI agents">
 <meta property="og:description" content="206 trigger-loaded security skills across 20 domains. Load into any AI agent. Recon → exploit → report → defend.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://noorqureshi.github.io/security-skills/social-preview.png">
@@ -15,7 +15,7 @@
 <body>
 
 <nav class="nav"><div class="wrap">
-  <a class="brand" href="index.html">Sploit<span class="a">Agent</span></a>
+  <a class="brand" href="index.html">Security<span class="a">Skills</span></a>
   <a class="link active" href="index.html">Home</a>
   <a class="link" href="start.html">Getting Started</a>
   <a class="link" href="interact.html">How it works</a>
@@ -28,7 +28,7 @@
 
 <header class="hero">
   <div class="mask">🥷</div>
-  <h1>Sploit<span class="a">Agent</span></h1>
+  <h1>Security<span class="a">Skills</span></h1>
   <p class="tagline">Security skills for AI agents.</p>
   <p class="sub">Give your AI agent the exact know-how for the job. You describe the task in plain
      English; it grabs the right technique, runs it, proves the bug, and writes it up —
@@ -50,7 +50,7 @@
 <main class="wrap">
 
   <section style="border-top:0">
-    <img class="demo" src="terminal.svg" alt="A Claude Code terminal session: describe a task in plain English and the matching SploitAgent skill loads to work an authorized target from recon to report">
+    <img class="demo" src="terminal.svg" alt="A Claude Code terminal session: describe a task in plain English and the matching Security Skills skill loads to work an authorized target from recon to report">
     <p class="lead" style="text-align:center;margin:22px auto 0">
       Think of it as a binder of 206 short "how to do this one technique" pages your agent flips to
       when it needs one. It's not a scanner and not a framework — just the know-how, as plain
@@ -65,7 +65,7 @@
       <tr><td><b>workspace</b></td><td>a folder for one target — holds your scope, notes, and findings</td></tr>
       <tr><td><b>scope</b></td><td>the targets you're allowed to test — the hard boundary the agent won't cross</td></tr>
       <tr><td><b>lead</b></td><td>one thing worth trying (e.g. "the login's JWT"); the agent works one at a time</td></tr>
-      <tr><td><b>console</b></td><td>the optional local web page (<code>sploit watch</code>) that shows what the agent is doing</td></tr>
+      <tr><td><b>console</b></td><td>the optional local web page (<code>secskills watch</code>) that shows what the agent is doing</td></tr>
     </table>
   </section>
 
@@ -73,9 +73,9 @@
     <h2><span class="hash">#</span> Quick start</h2>
     <p class="lead">Install once, then scaffold a per-target workspace <b>anywhere</b> — the folder gets
       the skills wired in, so any agent opened there can use them.</p>
-<pre>git clone https://github.com/NoorQureshi/security-skills &amp;&amp; cd SploitAgent
-./sploit install                       <span class="c"># skills everywhere + `sploit` on PATH</span>
-sploit new acme.com ~/work/acme        <span class="c"># workspace anywhere you like</span>
+<pre>git clone https://github.com/NoorQureshi/security-skills &amp;&amp; cd security-skills
+./secskills install                    <span class="c"># skills everywhere + `secskills` on PATH</span>
+secskills new acme.com ~/work/acme     <span class="c"># workspace anywhere you like</span>
 cd ~/work/acme &amp;&amp; claude               <span class="c"># or: codex · gemini</span></pre>
     <p style="margin-top:14px">Then say: <span style="color:var(--green)">"Start an authorized assessment of acme.com. Confirm scope, then recon."</span>
       <a class="more" href="start.html">Full setup →</a></p>
@@ -117,7 +117,7 @@ cd ~/work/acme &amp;&amp; claude               <span class="c"># or: codex · ge
       </div>
       <div class="card">
         <h3>🛡️ Authorized Use</h3>
-        <p>The one rule that governs everything: SploitAgent only acts inside a confirmed authorization envelope.</p>
+        <p>The one rule that governs everything: Security Skills only acts inside a confirmed authorization envelope.</p>
         <a class="more" href="safety.html">Read the rule →</a>
       </div>
       <div class="card">
@@ -150,7 +150,7 @@ cd ~/work/acme &amp;&amp; claude               <span class="c"># or: codex · ge
 </main>
 
 <footer>
-  <p>SploitAgent · MIT · for authorized security work only.<br>
+  <p>Security Skills · MIT · for authorized security work only.<br>
   <a href="https://github.com/NoorQureshi/security-skills">github.com/NoorQureshi/security-skills</a></p>
 </footer>
 

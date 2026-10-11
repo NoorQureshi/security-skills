@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SploitAgent Console</title>
+<title>Security Skills Console</title>
 <style>
   :root{
     --bg:#0b0f14; --bg2:#0e131a; --panel:#121821; --panel2:#161d27; --hover:#1a222e;
@@ -215,7 +215,7 @@
 </head>
 <body>
 <header>
-  <span class="brand">Sploit<span class="a">Agent</span></span>
+  <span class="brand">Security<span class="a">Skills</span></span>
   <span class="tag">Console</span>
   <span class="tag">read-only · local</span>
   <span class="live"><span class="dot" id="dot"></span><span id="livetxt">live</span></span>
@@ -235,7 +235,7 @@
       </div>
     </div>
   </aside>
-  <main id="main"><div class="empty">Select an engagement on the left, or run <code>sploit new &lt;target&gt;</code> to create one.</div></main>
+  <main id="main"><div class="empty">Select an engagement on the left, or run <code>secskills new &lt;target&gt;</code> to create one.</div></main>
 </div>
 
 <div class="scrim" id="scrim" onclick="closeDrawer()"></div>
@@ -340,7 +340,7 @@ async function loadEngagements(){
   const sig=JSON.stringify(d.engagements);
   if(sig===sigEng) return; sigEng=sig;
   const el=$("#englist");
-  if(!d.engagements.length){ el.innerHTML=`<div class="empty" style="padding:28px 16px;font-size:13px">No engagements yet.<br><br>Run <code>sploit new &lt;target&gt;</code>.</div>`; return; }
+  if(!d.engagements.length){ el.innerHTML=`<div class="empty" style="padding:28px 16px;font-size:13px">No engagements yet.<br><br>Run <code>secskills new &lt;target&gt;</code>.</div>`; return; }
   el.innerHTML=d.engagements.map(e=>{
     return `<div class="item ${CUR===e.path?'on':''}" onclick='openEng(${JSON.stringify(e)})'>
       <div class="t">${esc(e.target)}</div>
@@ -455,7 +455,7 @@ function renderMap(){
   if(!map.leadCount){
     html+=`<div class="empty" style="padding:40px 0">No attack leads mapped yet.<br><br>
       The map builds itself as the agent tags steps with a <code>lead</code> and a <code>status</code>
-      in <code>.sploit/activity.jsonl</code> (see <code>AGENTS.md</code> → <i>Show your work</i>).</div>`;
+      in <code>.secskills/activity.jsonl</code> (see <code>AGENTS.md</code> → <i>Show your work</i>).</div>`;
     if(map.recon.length) html+=reconBlock(map.recon);
     p.innerHTML=html; return;
   }

@@ -3412,17 +3412,18 @@
   {
    "domain": "tools",
    "keywords": [
-    "sploitagent",
     "skill",
     "pentest",
     "job",
+    "skills",
     "load",
     "domain",
     "arsenal",
     "selection",
     "tool",
     "cross",
-    "tools"
+    "tools",
+    "security"
    ],
    "slug": "tools-arsenal",
    "triggers": [
@@ -3758,10 +3759,10 @@
    "keywords": [
     "goal",
     "scenario",
-    "skills",
     "isolation",
     "scenarios",
     "multiple",
+    "skills",
     "concrete",
     "ordered",
     "technique",
@@ -3775,7 +3776,7 @@
    "triggers": [
     "test for goal + a scope",
     "not one technique in isolation",
-    "goal scenario skills"
+    "goal scenario isolation"
    ]
   },
   {

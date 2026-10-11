@@ -1,6 +1,6 @@
 # Engagement methodology
 
-The operating method behind SploitAgent's skills: the loop, the scope rule, the note-taking
+The operating method behind the Security Skills library: the loop, the scope rule, the note-taking
 standard, and the working principles. It's tool-neutral — the same whether you drive it with
 Claude Code, Codex, Gemini, a local model, or by hand.
 
@@ -62,7 +62,7 @@ Also capture **what you tried that failed and why**, and **decision points**. Ex
 art the first time. Favor plain-language mechanism over jargon.
 
 ## Locked core vs learning library
-SploitAgent improves without corrupting what makes it reliable:
+Security Skills improves without corrupting what makes it reliable:
 - 🔒 **Locked core (stable):** `methodology.md`, the arsenals, and the tradecraft/scope skills
   (`stability: locked`). Change deliberately, with rationale in the PR.
 - ✍️ **Learning library (grows):** every `stability: learning` skill. This is the open, welcome

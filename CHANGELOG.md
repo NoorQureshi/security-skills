@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to SploitAgent are documented here.
+All notable changes to Security Skills are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project aims to follow [Semantic Versioning](https://semver.org/).
 
@@ -53,6 +53,12 @@ and the project aims to follow [Semantic Versioning](https://semver.org/).
 - `sploit version`.
 
 ### Changed
+- **Project renamed SploitAgent → Security Skills.** The CLI is now `secskills`
+  (was `sploit` — no alias, clean break), engagement workspaces use `.secskills/`
+  (was `.sploit/`), the machine-wide registry moved to `~/.secskills/engagements.jsonl`,
+  and the repo is `github.com/NoorQureshi/security-skills`. Re-run `./secskills install`
+  to relink; existing `.sploit/`-era workspaces still work if you rename their
+  `.sploit/` folder to `.secskills/`.
 - README restructured around five persona paths (bug bounty, CTF, pentest, red team,
   blue team); the `sploit watch` console is demoted to an optional extra — the terminal
   is the workflow.

@@ -1,6 +1,6 @@
-# SploitAgent benchmark results
+# Security Skills benchmark results
 
-Do SploitAgent skills make an AI agent measurably better at offensive security?
+Does the Security Skills library make an AI agent measurably better at offensive security?
 Same agent, same model, same prompt, same target — one arm gets the skill library,
 the other gets nothing. Methodology and reproduction: [bench/README.md](README.md).
 
@@ -12,10 +12,15 @@ Target: OWASP Juice Shop v20.2.0 (116 challenges), local, 127.0.0.1:3000.
 
 | arm | trials | mean challenges solved | mean minutes | mean turns | mean cost |
 | --- | --- | --- | --- | --- | --- |
-| skills | 1 | 9.0 | 10.01 | — | — |
+| skills | 4 | 12.25 | 17.09 | 66.0 | $1.96 |
+| baseline | 1 | 5.0 | 30.02 | 60.0 | — |
 
 ## Runs
 
 | run | arm | trial | solved | minutes | turns | cost | model |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| 20261004-204015-baseline-1 | baseline | 1 | 5/116 | 30.02 | 60 | — | sonnet |
 | 20261002-002714-skills-1 | skills | 1 | 9/116 | 10.01 | — | — | sonnet |
+| 20261004-193831-skills-1 | skills | 1 | 14/116 | 20.73 | 74 | $1.95 | sonnet |
+| 20261004-195937-skills-2 | skills | 2 | 14/116 | 23.97 | 71 | $2.35 | sonnet |
+| 20261004-202433-skills-3 | skills | 3 | 12/116 | 13.65 | 53 | $1.59 | sonnet |

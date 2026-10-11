@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
-# sploit — the friendly front door to SploitAgent.
+# secskills — the friendly front door to Security Skills.
 #
-#   sploit new <target> [dir]   create an engagement workspace (anywhere) with the skills wired in
-#   sploit install              expose skills to every detected agent + put `sploit` on PATH
-#   sploit list                 list engagements under the current directory
-#   sploit help                 show this help
+#   secskills new <target> [dir]   create an engagement workspace (anywhere) with the skills wired in
+#   secskills install              expose skills to every detected agent + put `secskills` on PATH
+#   secskills list                 list engagements under the current directory
+#   secskills help                 show this help
 #
 # The workspace can live ANYWHERE — it doesn't need to be inside this repo. Whatever
 # folder you create, opening Claude Code (or Codex/Gemini) there can use the skills,
-# because `sploit new` links the library into that folder.
+# because `secskills new` links the library into that folder.
 #
 # Typical:
-#   git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
-#   ./sploit install                       # once: skills everywhere + `sploit` on PATH
-#   sploit new acme.com ~/work/acme        # workspace anywhere you like
+#   git clone https://github.com/NoorQureshi/security-skills && cd security-skills
+#   ./secskills install                    # once: skills everywhere + `secskills` on PATH
+#   secskills new acme.com ~/work/acme     # workspace anywhere you like
 #   cd ~/work/acme && claude               # then: "Start an authorized assessment of acme.com…"
 set -euo pipefail
 
 # Resolve this script's real location even when invoked via a PATH symlink
-# (~/.local/bin/sploit -> the repo). BSD/macOS-safe: no `readlink -f`.
+# (~/.local/bin/secskills -> the repo). BSD/macOS-safe: no `readlink -f`.
 __src="${BASH_SOURCE[0]}"
 while [ -h "$__src" ]; do
   __dir="$(cd -P "$(dirname "$__src")" && pwd)"
@@ -26,29 +26,29 @@ while [ -h "$__src" ]; do
   case "$__src" in /*) ;; *) __src="$__dir/$__src" ;; esac
 done
 REPO_DIR="$(cd -P "$(dirname "$__src")" && pwd)"
-SPLOIT_VERSION="$(cat "$REPO_DIR/VERSION" 2>/dev/null || echo dev)"
+SECSKILLS_VERSION="$(cat "$REPO_DIR/VERSION" 2>/dev/null || echo dev)"
 G=$'\033[32m'; P=$'\033[35m'; D=$'\033[2m'; B=$'\033[1m'; R=$'\033[0m'
 say(){ printf '%s\n' "$*"; }
 
 usage(){
   cat <<EOF
-${B}SploitAgent${R} — security skills for AI agents (authorized use only)
+${B}Security Skills${R} — security skills for AI agents (authorized use only)
 
-  ${G}sploit new <target> [dir]${R}   create an engagement workspace with the skills wired in
+  ${G}secskills new <target> [dir]${R}   create an engagement workspace with the skills wired in
                               ${D}dir defaults to ./<target>; pass any path to put it elsewhere${R}
       ${D}--copy${R}                  copy the skills into the workspace (portable; survives moving the repo)
-  ${G}sploit watch${R}                open the console (runs in the background — your terminal stays free)
+  ${G}secskills watch${R}                open the console (runs in the background — your terminal stays free)
       ${D}--stop${R}                  stop the background console      ${D}--fg${R}  run it in the foreground
-  ${G}sploit install${R}              expose skills to every detected agent + put 'sploit' on PATH
-  ${G}sploit uninstall${R}            remove the installed skills & agent wiring + take 'sploit' off PATH
-  ${G}sploit update${R}               git pull the library + refresh the installed skills and links
-  ${G}sploit list${R}                 list engagement workspaces under the current directory
-  ${G}sploit version${R}              show the installed version
-  ${G}sploit help${R}                 show this help
+  ${G}secskills install${R}              expose skills to every detected agent + put 'secskills' on PATH
+  ${G}secskills uninstall${R}            remove the installed skills & agent wiring + take 'secskills' off PATH
+  ${G}secskills update${R}               git pull the library + refresh the installed skills and links
+  ${G}secskills list${R}                 list engagement workspaces under the current directory
+  ${G}secskills version${R}              show the installed version
+  ${G}secskills help${R}                 show this help
 
 Quick start:
-  ${D}./sploit install${R}
-  ${D}sploit new acme.com ~/work/acme${R}
+  ${D}./secskills install${R}
+  ${D}secskills new acme.com ~/work/acme${R}
   ${D}cd ~/work/acme && claude${R}   →   ${P}"Start an authorized assessment of acme.com. Confirm scope, then recon."${R}
 EOF
 }
@@ -62,7 +62,7 @@ new_engagement(){
       *) if [ -z "$target" ]; then target="$1"; elif [ -z "$dest" ]; then dest="$1"; fi ;;
     esac; shift
   done
-  [ -n "$target" ] || { say "usage: sploit new <target> [dir]   (e.g. sploit new acme.com ~/work/acme)"; exit 2; }
+  [ -n "$target" ] || { say "usage: secskills new <target> [dir]   (e.g. secskills new acme.com ~/work/acme)"; exit 2; }
 
   local slug; slug="$(printf '%s' "$target" | tr '[:upper:] ' '[:lower:]-' | tr -cd 'a-z0-9._-')"
   [ -n "$slug" ] || slug="engagement"
@@ -121,8 +121,8 @@ newest at the bottom. Keep each block to: **goal · command · result · why · 
 -->
 EOF
 
-  # --- plan + activity log (tool-agnostic; drives the `sploit watch` console) ---
-  mkdir -p "$dest/.sploit"
+  # --- plan + activity log (tool-agnostic; drives the `secskills watch` console) ---
+  mkdir -p "$dest/.secskills"
   cat > "$dest/plan.md" <<EOF
 # Plan — $target
 _The agent's living strategy. It fills this in and keeps it current._
@@ -141,15 +141,15 @@ _What you asked for (e.g. find access-control bugs on the API)._
 _—_
 EOF
   local now; now="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-  printf '{"ts":"%s","event":"note","detail":"engagement created for %s"}\n' "$now" "$target" > "$dest/.sploit/activity.jsonl"
+  printf '{"ts":"%s","event":"note","detail":"engagement created for %s"}\n' "$now" "$target" > "$dest/.secskills/activity.jsonl"
 
   # --- Claude Code auto-capture: log tool calls into activity.jsonl with no manual effort ---
   # Ships a per-workspace copy of the hook so it works even if the repo moves (or --copy is used),
   # and registers it as a PostToolUse hook. Other agents fall back to the agent-written log.
   if [ -f "$REPO_DIR/tools/hooks/cc-activity-hook.py" ]; then
-    cp "$REPO_DIR/tools/hooks/cc-activity-hook.py" "$dest/.sploit/cc-activity-hook.py"
+    cp "$REPO_DIR/tools/hooks/cc-activity-hook.py" "$dest/.secskills/cc-activity-hook.py"
     [ -f "$REPO_DIR/tools/hooks/cc-thoroughness-hook.py" ] && \
-      cp "$REPO_DIR/tools/hooks/cc-thoroughness-hook.py" "$dest/.sploit/cc-thoroughness-hook.py"
+      cp "$REPO_DIR/tools/hooks/cc-thoroughness-hook.py" "$dest/.secskills/cc-thoroughness-hook.py"
     mkdir -p "$dest/.claude"
     cat > "$dest/.claude/settings.json" <<EOF
 {
@@ -158,14 +158,14 @@ EOF
       {
         "matcher": "Bash|WebFetch|WebSearch",
         "hooks": [
-          { "type": "command", "command": "python3 '$dest/.sploit/cc-activity-hook.py'" }
+          { "type": "command", "command": "python3 '$dest/.secskills/cc-activity-hook.py'" }
         ]
       }
     ],
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "python3 '$dest/.sploit/cc-thoroughness-hook.py'" }
+          { "type": "command", "command": "python3 '$dest/.secskills/cc-thoroughness-hook.py'" }
         ]
       }
     ]
@@ -174,20 +174,20 @@ EOF
 EOF
   fi
 
-  # register this workspace machine-wide so `sploit watch` can find it wherever it lives
-  mkdir -p "$HOME/.sploit"
-  printf '{"ts":"%s","target":"%s","path":"%s"}\n' "$now" "$target" "$dest" >> "$HOME/.sploit/engagements.jsonl"
+  # register this workspace machine-wide so `secskills watch` can find it wherever it lives
+  mkdir -p "$HOME/.secskills"
+  printf '{"ts":"%s","target":"%s","path":"%s"}\n' "$now" "$target" "$dest" >> "$HOME/.secskills/engagements.jsonl"
 
   # --- wire the skill library into the workspace (same mechanism the repo uses) ---
   # A folder with CLAUDE.md/AGENTS.md + skills/ is all an agent needs — no per-folder
-  # flatten, no global install required. `sploit install` (optional) adds Claude Code
+  # flatten, no global install required. `secskills install` (optional) adds Claude Code
   # auto-discovery everywhere on top of this.
   if [ "$copy" -eq 1 ]; then cp -R "$REPO_DIR/skills" "$dest/skills"; else ln -s "$REPO_DIR/skills" "$dest/skills"; fi
   cp "$REPO_DIR/AGENTS.md" "$dest/AGENTS.md"
   cat > "$dest/CLAUDE.md" <<EOF
-# SploitAgent engagement — $target
+# Security Skills engagement — $target
 
-You are in an **authorized** engagement workspace. The SploitAgent skill library is available at
+You are in an **authorized** engagement workspace. The Security Skills library is available at
 \`./skills/\`, so this works wherever the folder lives. Operating guide:
 
 @AGENTS.md
@@ -196,16 +196,16 @@ You are in an **authorized** engagement workspace. The SploitAgent skill library
   (skim \`./skills\`), read that SKILL.md and follow it.
 - **Load \`tradecraft-scope-roe\` first**, obey \`scope.txt\` / \`roe.md\`, never touch anything out of scope.
 - Keep the running log in \`notes.md\`; write confirmed findings into \`findings/\`.
-- Write your strategy to \`plan.md\` and append one JSON line per step to \`.sploit/activity.jsonl\`
-  (see \`AGENTS.md\` → *Show your work*) so it can be followed live in the \`sploit watch\` console.
+- Write your strategy to \`plan.md\` and append one JSON line per step to \`.secskills/activity.jsonl\`
+  (see \`AGENTS.md\` → *Show your work*) so it can be followed live in the \`secskills watch\` console.
 EOF
   printf 'repo=%s\ncreated=%s\ntarget=%s\nmode=%s\n' \
-    "$REPO_DIR" "$(date '+%Y-%m-%dT%H:%M:%S')" "$target" "$([ "$copy" -eq 1 ] && echo copy || echo link)" > "$dest/.sploitagent"
+    "$REPO_DIR" "$(date '+%Y-%m-%dT%H:%M:%S')" "$target" "$([ "$copy" -eq 1 ] && echo copy || echo link)" > "$dest/.secskills-workspace"
 
   cat > "$dest/START-HERE.md" <<EOF
 # Start here — $target
 
-This is a self-contained engagement workspace. The SploitAgent skills are wired in
+This is a self-contained engagement workspace. The Security Skills skills are wired in
 ($([ "$copy" -eq 1 ] && echo 'copied — fully portable' || echo 'linked from the repo')), so any agent you open here can use them.
 
 ## 1. Set the boundary
@@ -216,13 +216,13 @@ loads \`tradecraft-scope-roe\` first and refuses anything not listed.
 \`\`\`bash
 claude          # or: opencode · codex · gemini — whatever you use
 \`\`\`
-Optional: run \`sploit watch\` first (it runs in the background) to see the plan, live
+Optional: run \`secskills watch\` first (it runs in the background) to see the plan, live
 activity, and the **Attack Map** in your browser while the agent works.
 
 Under **Claude Code**, two hooks are wired in \`.claude/settings.json\`:
-- **auto-capture** (\`.sploit/cc-activity-hook.py\`) records every shell command and web request,
+- **auto-capture** (\`.secskills/cc-activity-hook.py\`) records every shell command and web request,
   so the console fills in even if the agent forgets to log.
-- **persistence** (\`.sploit/cc-thoroughness-hook.py\`) blocks the agent from ending while any lead
+- **persistence** (\`.secskills/cc-thoroughness-hook.py\`) blocks the agent from ending while any lead
   is marked \`failed\` without a coverage rationale — so it can't give up early and pivot away.
 
 Delete \`.claude/settings.json\` to turn both off.
@@ -250,33 +250,33 @@ do_install(){
   local uninstall=0 a
   for a in "$@"; do [ "$a" = "--uninstall" ] && uninstall=1; done
   "$REPO_DIR/install.sh" "$@"          # global skills + per-agent wiring, passes through --copy/--uninstall
-  # put `sploit` on PATH so `sploit new` works from anywhere
+  # put `secskills` on PATH so `secskills new` works from anywhere
   local bindir="$HOME/.local/bin"
   if [ "$uninstall" -eq 1 ]; then
-    rm -f "$bindir/sploit"
+    rm -f "$bindir/secskills"
     say ""
-    say "${G}✔${R} uninstalled ${B}sploit${R} — skills and agent wiring removed, $bindir/sploit deleted"
+    say "${G}✔${R} uninstalled ${B}secskills${R} — skills and agent wiring removed, $bindir/secskills deleted"
     return
   fi
   mkdir -p "$bindir"
-  ln -sf "$REPO_DIR/sploit" "$bindir/sploit"
+  ln -sf "$REPO_DIR/secskills" "$bindir/secskills"
   say ""
-  say "${G}✔${R} linked ${B}sploit${R} → $bindir/sploit"
+  say "${G}✔${R} linked ${B}secskills${R} → $bindir/secskills"
   case ":$PATH:" in
-    *":$bindir:"*) say "  you can now run ${B}sploit new <target>${R} from anywhere." ;;
+    *":$bindir:"*) say "  you can now run ${B}secskills new <target>${R} from anywhere." ;;
     *) say "  add it to PATH:  ${B}export PATH=\"\$HOME/.local/bin:\$PATH\"${R}  (add to ~/.bashrc or ~/.zshrc)" ;;
   esac
 }
 
 do_update(){
   git -C "$REPO_DIR" pull --ff-only
-  SPLOIT_VERSION="$(cat "$REPO_DIR/VERSION" 2>/dev/null || echo dev)"
+  SECSKILLS_VERSION="$(cat "$REPO_DIR/VERSION" 2>/dev/null || echo dev)"
   "$REPO_DIR/install.sh" --quiet       # refresh skill links in case skills were added/renamed
   local bindir="$HOME/.local/bin"
   mkdir -p "$bindir"
-  ln -sf "$REPO_DIR/sploit" "$bindir/sploit"
+  ln -sf "$REPO_DIR/secskills" "$bindir/secskills"
   say ""
-  say "${G}✔${R} updated — SploitAgent ${B}$SPLOIT_VERSION${R}, skills and sploit link refreshed."
+  say "${G}✔${R} updated — Security Skills ${B}$SECSKILLS_VERSION${R}, skills and secskills link refreshed."
 }
 
 open_url(){ python3 -c "import webbrowser,sys; webbrowser.open(sys.argv[1])" "$1" >/dev/null 2>&1 || true; }
@@ -291,8 +291,8 @@ do_watch(){
       --port=*) port="${1#--port=}" ;;
     esac; shift
   done
-  mkdir -p "$HOME/.sploit"
-  local pidf="$HOME/.sploit/console.pid" pid="" p=""
+  mkdir -p "$HOME/.secskills"
+  local pidf="$HOME/.secskills/console.pid" pid="" p=""
   [ -f "$pidf" ] && read -r pid p < "$pidf" 2>/dev/null || true
 
   if [ "$action" = stop ]; then
@@ -300,38 +300,38 @@ do_watch(){
     return
   fi
   if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
-    say "console already running → ${B}http://127.0.0.1:${p:-$port}${R}   ${D}(stop: sploit watch --stop)${R}"
+    say "console already running → ${B}http://127.0.0.1:${p:-$port}${R}   ${D}(stop: secskills watch --stop)${R}"
     open_url "http://127.0.0.1:${p:-$port}"; return
   fi
   command -v python3 >/dev/null 2>&1 || { say "${B}!${R} python3 is required for the console (install Xcode CLT or 'brew install python')."; exit 1; }
   local server="$REPO_DIR/tools/console/server.py"
-  [ -f "$server" ] || { say "${B}!${R} console server not found at $server"; say "  ${D}re-run 'git pull' in the repo, or './sploit install' to relink.${R}"; exit 1; }
+  [ -f "$server" ] || { say "${B}!${R} console server not found at $server"; say "  ${D}re-run 'git pull' in the repo, or './secskills install' to relink.${R}"; exit 1; }
   if [ "$fg" -eq 1 ]; then exec python3 "$server" --port "$port"; fi
 
-  nohup python3 "$server" --port "$port" --no-open >"$HOME/.sploit/console.log" 2>&1 &
+  nohup python3 "$server" --port "$port" --no-open >"$HOME/.secskills/console.log" 2>&1 &
   local newpid=$!
   printf '%s %s\n' "$newpid" "$port" > "$pidf"
   sleep 0.7
   if ! kill -0 "$newpid" 2>/dev/null; then       # died on startup (port in use, bad python, …)
     rm -f "$pidf"
     say "${B}!${R} console failed to start. Last output:"
-    tail -n 15 "$HOME/.sploit/console.log" 2>/dev/null | sed 's/^/  /'
-    say "  ${D}try a different port: sploit watch --port 8788${R}"
+    tail -n 15 "$HOME/.secskills/console.log" 2>/dev/null | sed 's/^/  /'
+    say "  ${D}try a different port: secskills watch --port 8788${R}"
     exit 1
   fi
   say "${G}✔${R} console running in the background → ${B}http://127.0.0.1:$port${R}"
-  say "  your terminal is free. ${D}stop: sploit watch --stop · log: ~/.sploit/console.log${R}"
+  say "  your terminal is free. ${D}stop: secskills watch --stop · log: ~/.secskills/console.log${R}"
   open_url "http://127.0.0.1:$port"
 }
 
 list_engagements(){
   local found=0
-  for m in ./*/.sploitagent; do
+  for m in ./*/.secskills-workspace; do
     [ -e "$m" ] || continue
     [ "$found" -eq 0 ] && { say "${B}Engagements here${R} (in $(pwd)):"; found=1; }
     say "  • $(basename "$(dirname "$m")")"
   done
-  [ "$found" -eq 0 ] && say "No engagements in $(pwd). Create one:  sploit new <target> [dir]"
+  [ "$found" -eq 0 ] && say "No engagements in $(pwd). Create one:  secskills new <target> [dir]"
 }
 
 cmd="${1:-help}"
@@ -342,7 +342,7 @@ case "$cmd" in
   update)      do_update ;;
   watch|ui|console) shift || true; do_watch "$@" ;;
   list|ls)     list_engagements ;;
-  version|--version|-v) say "SploitAgent ${B}$SPLOIT_VERSION${R}"; say "  ${D}repo: $REPO_DIR${R}" ;;
+  version|--version|-v) say "Security Skills ${B}$SECSKILLS_VERSION${R}"; say "  ${D}repo: $REPO_DIR${R}" ;;
   help|-h|--help|"") usage ;;
   *) say "unknown command: $cmd"; say ""; usage; exit 2 ;;
 esac

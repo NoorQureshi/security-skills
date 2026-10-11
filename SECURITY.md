@@ -1,11 +1,11 @@
 # Security Policy
 
-SploitAgent is a library of **security skills for authorized testing**. This policy covers two
-different things: reporting a vulnerability in SploitAgent's *own* code, and the rules for using it.
+Security Skills is a library of **security skills for authorized testing**. This policy covers two
+different things: reporting a vulnerability in the project's *own* code, and the rules for using it.
 
-## Reporting a vulnerability in SploitAgent itself
+## Reporting a vulnerability in Security Skills itself
 
-If you find a security issue in the tooling in this repo — the `sploit` launcher, `install.sh`, the
+If you find a security issue in the tooling in this repo — the `secskills` launcher, `install.sh`, the
 `tools/console/` server, the `cc-activity-hook.py`, or `tools/catalog.py` (for example: the console
 serving files outside a workspace, a path-traversal, or the installer clobbering files it shouldn't) —
 please report it privately, not in a public issue:
@@ -25,9 +25,9 @@ The skills describe offensive techniques on purpose — that is the point of the
 Reports that a `SKILL.md` "teaches hacking" are out of scope. The console binds to `127.0.0.1`, is
 read-only, and never controls the agent by design.
 
-## Using SploitAgent — authorized use only
+## Using Security Skills — authorized use only
 
-SploitAgent runs real techniques against real systems. Use it **only** where you have explicit
+Security Skills runs real techniques against real systems. Use it **only** where you have explicit
 authorization:
 
 - a signed penetration-test scope / statement of work,

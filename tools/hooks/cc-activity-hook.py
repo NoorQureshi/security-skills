@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SploitAgent — Claude Code auto-capture hook (PostToolUse).
+"""Security Skills — Claude Code auto-capture hook (PostToolUse).
 
 Claude Code runs this after every tool call and passes the call as JSON on
 stdin. We record the meaningful *actions* (shell commands, web requests) into
@@ -7,8 +7,8 @@ the engagement's activity log automatically — so the console shows what the
 agent did without the agent having to remember to log it. The agent still adds
 the semantic layer on top (decisions, leads, findings, rationale).
 
-Wiring (done for you by `sploit new`): a copy of this script lives at
-<workspace>/.sploit/cc-activity-hook.py and <workspace>/.claude/settings.json
+Wiring (done for you by `secskills new`): a copy of this script lives at
+<workspace>/.secskills/cc-activity-hook.py and <workspace>/.claude/settings.json
 registers it as a PostToolUse hook. It writes activity.jsonl right next to
 itself, so it needs no arguments and doesn't care about the cwd.
 
@@ -17,7 +17,7 @@ JSON lines, always exit 0, print nothing. Read-only toward everything but the lo
 """
 import sys, os, json, datetime
 
-HERE = os.path.dirname(os.path.abspath(__file__))          # <workspace>/.sploit
+HERE = os.path.dirname(os.path.abspath(__file__))          # <workspace>/.secskills
 LOG  = os.path.join(HERE, "activity.jsonl")
 MAXD = 300   # truncate long details / results
 

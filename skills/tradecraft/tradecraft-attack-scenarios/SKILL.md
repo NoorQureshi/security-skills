@@ -24,7 +24,7 @@ adapts as evidence comes in. This is the layer above individual techniques.
 ## Why it works
 Real engagements are graphs, not checklists: each result changes what's worth trying next. Planning
 the scenario explicitly — objective, hypotheses, ordered leads, decision points — is what turns a
-pile of 127 techniques into a coherent path, and it's exactly what the `sploit watch` Attack Map
+pile of 127 techniques into a coherent path, and it's exactly what the `secskills watch` Attack Map
 renders (`lead`, `status`, `rationale`).
 
 ## Method

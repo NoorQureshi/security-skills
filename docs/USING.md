@@ -1,6 +1,6 @@
-# Using SploitAgent
+# Using Security Skills
 
-SploitAgent is a **library of security skills** in the standard Agent-Skills format
+Security Skills is a **library of security skills** in the standard Agent-Skills format
 (`skills/<domain>/<slug>/SKILL.md`, each with a `description:` trigger line). You give an AI agent
 access to the skills; it loads the right one for the task. There's **no runtime to install** — the
 skills are plain Markdown.
@@ -18,11 +18,11 @@ Below are copy-paste setups and **example prompts** for each agent, plus local L
 **Option A — open Claude Code in the repo (zero setup).** It auto-reads `CLAUDE.md` (which imports
 `AGENTS.md`) and can load any `skills/**/SKILL.md`.
 ```bash
-git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
+git clone https://github.com/NoorQureshi/security-skills && cd security-skills
 claude
 ```
 Then, e.g.:
-> *"My authorized target is the bug-bounty program acme.com (wildcard in scope). Load SploitAgent's recon skills and map the surface, then hunt the API."*
+> *"My authorized target is the bug-bounty program acme.com (wildcard in scope). Load Security Skills' recon skills and map the surface, then hunt the API."*
 
 **Option B — make the skills available in every project.** Run the installer once; it links each
 skill into `~/.claude/skills/` in the one-directory-deep layout Claude Code expects (a plain
@@ -30,7 +30,7 @@ skill into `~/.claude/skills/` in the one-directory-deep layout Claude Code expe
 and wires every other detected agent (Kimi Code, Cursor, Codex, Gemini) at the same time:
 ```bash
 git clone https://github.com/NoorQureshi/security-skills
-cd SploitAgent && ./install.sh          # --project scopes to one repo · --uninstall removes
+cd security-skills && ./install.sh      # --project scopes to one repo · --uninstall removes
 ```
 Now in any project: `"Use the web-ssrf skill on https://app.example.com (authorized)."`
 
@@ -40,7 +40,7 @@ Now in any project: `"Use the web-ssrf skill on https://app.example.com (authori
 
 Codex reads **`AGENTS.md`** from the working directory automatically.
 ```bash
-git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
+git clone https://github.com/NoorQureshi/security-skills && cd security-skills
 codex           # it picks up AGENTS.md; point it at skills/ as needed
 ```
 > *"Read AGENTS.md, then use skills/api/api-bola to test https://api.example.com/v1 (I'm authorized)."*
@@ -54,7 +54,7 @@ For a one-off without cloning, paste a single `SKILL.md` into the chat and give 
 Gemini CLI reads context files from the working directory (`GEMINI.md`/`AGENTS.md` conventions).
 Point it at the guide + a skill:
 ```bash
-git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
+git clone https://github.com/NoorQureshi/security-skills && cd security-skills
 gemini
 ```
 > *"Follow AGENTS.md. Load skills/web/web-xss and test the search box at https://example.com (authorized)."*
@@ -65,11 +65,11 @@ If your version doesn't auto-read `AGENTS.md`, start the session by pasting it (
 
 ## Cursor / Windsurf / Zed (and other AGENTS.md-aware editors)
 
-These read `AGENTS.md` (or their rules file) from the repo root. Clone SploitAgent (or add it to your
+These read `AGENTS.md` (or their rules file) from the repo root. Clone Security Skills (or add it to your
 workspace) and reference skills by path:
 > *"Per AGENTS.md, use `skills/cloud/cloud-imds-ssrf` — I have an SSRF on an AWS-hosted authorized target."*
 
-To use the skills inside *another* project, add SploitAgent as a folder in the workspace, or copy the
+To use the skills inside *another* project, add Security Skills as a folder in the workspace, or copy the
 domains you want into that repo.
 
 ---
@@ -78,7 +78,7 @@ domains you want into that repo.
 
 `aider` can load files as read-only context with `--read`:
 ```bash
-git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
+git clone https://github.com/NoorQureshi/security-skills && cd security-skills
 aider --read AGENTS.md --read skills/web/web-ssrf/SKILL.md          # hosted model
 aider --model ollama/qwen2.5-coder:14b --read AGENTS.md             # local model
 ```
@@ -93,15 +93,15 @@ Local models don't auto-discover files, so you feed the guide + the relevant ski
 ### Ollama — bake the guide into a model (best experience)
 Create a local model preloaded with the operating guide:
 ```bash
-git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
+git clone https://github.com/NoorQureshi/security-skills && cd security-skills
 printf 'FROM qwen2.5-coder:14b\nSYSTEM """\n%s\n"""\n' "$(cat AGENTS.md)" > Modelfile
-ollama create sploitagent -f Modelfile
-ollama run sploitagent
+ollama create security-skills -f Modelfile
+ollama run security-skills
 ```
 Then paste the specific skill for the task and your target:
 ```bash
 # feed a skill + your task in one shot
-cat skills/web/web-ssrf/SKILL.md - <<<'Target https://app.example.com (authorized). Walk me through SSRF testing.' | ollama run sploitagent
+cat skills/web/web-ssrf/SKILL.md - <<<'Target https://app.example.com (authorized). Walk me through SSRF testing.' | ollama run security-skills
 ```
 
 ### LM Studio
@@ -110,7 +110,7 @@ cat skills/web/web-ssrf/SKILL.md - <<<'Target https://app.example.com (authorize
 
 ### Open WebUI
 - Create a **Knowledge** collection and upload the `skills/` folder (or the domains you need).
-- In chat, reference it with `#` so the model retrieves the relevant skill, e.g. `#sploitagent web-ssrf`.
+- In chat, reference it with `#` so the model retrieves the relevant skill, e.g. `#security-skills web-ssrf`.
 
 ### Any local setup (lowest common denominator)
 The skills are just text — concatenate the guide + skill + your task into the prompt:

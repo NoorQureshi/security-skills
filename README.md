@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🥷 SploitAgent
+# 🥷 Security Skills
 
 **Security skills for AI agents.**
 206 offensive + defensive techniques your AI agent loads on demand to work an **authorized** target — from recon to report.
@@ -9,7 +9,7 @@
 ![skills](https://img.shields.io/badge/skills-206-334155?style=flat-square)
 ![domains](https://img.shields.io/badge/domains-20-334155?style=flat-square)
 ![mapped](https://img.shields.io/badge/mapped-OWASP%20%C2%B7%20MITRE%20ATT%26CK-334155?style=flat-square)
-![routing](https://img.shields.io/badge/routing-483%20trigger%20cases%20CI--verified-334155?style=flat-square)
+![routing](https://img.shields.io/badge/routing-618%20trigger%20cases%20CI--verified-334155?style=flat-square)
 ![license](https://img.shields.io/badge/license-MIT-334155?style=flat-square)
 
 <sub>[Docs](https://noorqureshi.github.io/security-skills/) · [How it works](https://noorqureshi.github.io/security-skills/interact.html) · [Search skills](https://noorqureshi.github.io/security-skills/catalog.html) · [Contributing](CONTRIBUTING.md)</sub>
@@ -22,16 +22,16 @@
 
 <p align="center">
   <img src="docs/screenshots/demo.svg" width="820"
-       alt="Terminal replay: Claude Code with SploitAgent skills solves 9 of 116 OWASP Juice Shop challenges in 10 minutes">
+       alt="Terminal replay: Claude Code with Security Skills solves 9 of 116 OWASP Juice Shop challenges in 10 minutes">
 </p>
 
 **Benchmarked, not just claimed.** That replay is a real run: against OWASP Juice Shop (116 challenges, running locally), an agent with these skills solved **9 challenges in 10 minutes** — SQLi auth bypass, UNION credential dump, XXE, JWT algorithm confusion, BOLA — each with a written finding. Scoring comes from the target's own solve log, never from what the agent claims. Full A/B (skills vs none) and how to reproduce it yourself: [bench/RESULTS.md](bench/RESULTS.md).
 
 ## What it is
 
-Your AI agent is a strong generalist, but it doesn't know the *exact method* for a specific job — say, testing an API for access-control bugs. **SploitAgent is that missing know-how:** a binder of 206 short "how to do this one technique" pages the agent flips to when it needs one.
+Your AI agent is a strong generalist, but it doesn't know the *exact method* for a specific job — say, testing an API for access-control bugs. **Security Skills is that missing know-how:** a binder of 206 short "how to do this one technique" pages the agent flips to when it needs one.
 
-It's not a replacement for your toolkit, either: the skills teach your agent when and how to drive the tools you already have — sqlmap, nmap, ffuf, nuclei, Burp Suite, Ghidra, Frida, hashcat, Impacket — with the exact commands, follow-ups, and verification steps each job calls for. And a machine-readable routing table ([`data/routing.json`](data/routing.json) — **483 trigger cases, CI-verified**) lets any agent or integration pick the right skill deterministically, no prompt guesswork.
+It's not a replacement for your toolkit, either: the skills teach your agent when and how to drive the tools you already have — sqlmap, nmap, ffuf, nuclei, Burp Suite, Ghidra, Frida, hashcat, Impacket — with the exact commands, follow-ups, and verification steps each job calls for. And a machine-readable routing table ([`data/routing.json`](data/routing.json) — **618 trigger cases, CI-verified**) lets any agent or integration pick the right skill deterministically, no prompt guesswork.
 
 You describe the task in plain English → it picks the right page, runs it, proves the bug, and writes it up → and it never touches anything outside the scope you set.
 
@@ -52,17 +52,17 @@ Same library, five ways in. Everything below runs in your terminal — install o
 > **Need:** an AI agent — [Claude Code](https://claude.com/claude-code), [OpenCode](https://opencode.ai), Codex, Gemini, or your own API script — plus `git` and a terminal. `python3` only for the optional console.
 
 ```console
-# 1 · install once — links the skills into your agent + puts `sploit` on PATH
-$ git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
-$ ./sploit install
+# 1 · install once — links the skills into your agent + puts `secskills` on PATH
+$ git clone https://github.com/NoorQureshi/security-skills && cd security-skills
+$ ./secskills install
 
 # 2 · make a workspace for your target (anywhere) and set the boundary
-$ sploit new acme.com ~/work/acme
+$ secskills new acme.com ~/work/acme
 $ cd ~/work/acme
 $ nano scope.txt                     # your authorized target(s) — nothing else gets touched
 
 # 3 · (optional) watch the agent work, live, in your browser
-$ sploit watch                       # runs in the background · stop: sploit watch --stop
+$ secskills watch                    # runs in the background · stop: secskills watch --stop
 
 # 4 · open your agent in the workspace and describe the task   ↓ (Claude Code / OpenCode below)
 ```
@@ -71,7 +71,7 @@ $ sploit watch                       # runs in the background · stop: sploit wa
 
 ## Run it with your agent
 
-Open your agent **inside the workspace** and describe the task in plain English — the matching skill loads itself. `./sploit install` auto-configures every agent it detects on your machine — linking the skills where the agent has a native skills directory (Claude Code, Kimi Code, Cursor) and adding a small, clearly-marked pointer block to the agent's global instructions file otherwise (Codex, Gemini, OpenCode). Re-run it anytime; it's idempotent and `--uninstall` removes exactly what it added.
+Open your agent **inside the workspace** and describe the task in plain English — the matching skill loads itself. `./secskills install` auto-configures every agent it detects on your machine — linking the skills where the agent has a native skills directory (Claude Code, Kimi Code, Cursor) and adding a small, clearly-marked pointer block to the agent's global instructions file otherwise (Codex, Gemini, OpenCode). Re-run it anytime; it's idempotent and `--uninstall` removes exactly what it added.
 
 <details open>
 <summary><b>Claude Code</b></summary>
@@ -88,7 +88,7 @@ Open your agent **inside the workspace** and describe the task in plain English 
   ✔ wrote findings/idor-orders.md
 ```
 
-`./sploit install` linked the skills into `~/.claude/skills/` (and wired every other detected agent the same way — native skills dirs where they exist, a managed pointer block in the global instructions file otherwise), so Claude Code finds them in **any** folder and loads the one that fits your request.
+`./secskills install` linked the skills into `~/.claude/skills/` (and wired every other detected agent the same way — native skills dirs where they exist, a managed pointer block in the global instructions file otherwise), so Claude Code finds them in **any** folder and loads the one that fits your request.
 </details>
 
 <details>
@@ -97,7 +97,7 @@ Open your agent **inside the workspace** and describe the task in plain English 
 ```console
 ~/work/acme $ opencode        # launches the TUI in this folder, using your own model/API key
 
-> Use the SploitAgent skills in ./skills. Start an authorized assessment of
+> Use the Security Skills library in ./skills. Start an authorized assessment of
   acme.com — confirm scope from scope.txt, then recon the attack surface.
 
   → reads AGENTS.md + ./skills · loads recon-* then routes by what it finds
@@ -112,7 +112,7 @@ No install step: OpenCode reads `AGENTS.md` and the `./skills` folder in the wor
 ```console
 ~/work/acme $ codex           # or: gemini  — run inside the workspace
 
-> Use the SploitAgent skills here. Start an authorized assessment of acme.com,
+> Use the Security Skills library here. Start an authorized assessment of acme.com,
   confirm scope from scope.txt, then recon.
 ```
 
@@ -120,9 +120,9 @@ Any agent works: point it at the workspace with read access to `AGENTS.md` and `
 </details>
 
 <details>
-<summary><b>Optional: watch the agent live in your browser (<code>sploit watch</code>)</b></summary>
+<summary><b>Optional: watch the agent live in your browser (<code>secskills watch</code>)</b></summary>
 
-The terminal is the whole workflow — but if you want a live, **read-only** view of what the agent is doing, `sploit watch` opens a small dashboard at `http://127.0.0.1:8787`. It just reads the workspace on disk, so it works the same whichever agent you run.
+The terminal is the whole workflow — but if you want a live, **read-only** view of what the agent is doing, `secskills watch` opens a small dashboard at `http://127.0.0.1:8787`. It just reads the workspace on disk, so it works the same whichever agent you run.
 
 <p align="center">
   <img src="docs/screenshots/attack-map.png" width="820"
@@ -193,7 +193,7 @@ Under Claude Code a bundled hook records commands automatically, so the console 
 
 ## Authorized use only
 
-For security work you're **permitted** to do — a signed pentest scope, a bug-bounty program that lists the target, or systems you own. The first skill every engagement loads is `tradecraft-scope-roe`: it confirms authorization and refuses anything not in your `scope.txt`. See [SECURITY.md](SECURITY.md) to report a vulnerability in SploitAgent itself.
+For security work you're **permitted** to do — a signed pentest scope, a bug-bounty program that lists the target, or systems you own. The first skill every engagement loads is `tradecraft-scope-roe`: it confirms authorization and refuses anything not in your `scope.txt`. See [SECURITY.md](SECURITY.md) to report a vulnerability in Security Skills itself.
 
 ## Contribute
 

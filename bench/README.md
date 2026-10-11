@@ -1,6 +1,6 @@
-# bench/ — SploitAgent benchmark harness
+# bench/ — Security Skills benchmark harness
 
-Do SploitAgent skills make an AI agent measurably better at offensive security?
+Does the Security Skills library make an AI agent measurably better at offensive security?
 This harness proves it with numbers instead of claiming it: it runs Claude Code
 headless against a local intentionally-vulnerable target in two arms — **skills**
 vs **baseline** — identical except for skill access, and scores both from the
@@ -13,15 +13,15 @@ target's own log. Results: [RESULTS.md](RESULTS.md).
   No Docker required: the zip's native modules need node 22, which the adapter
   runs through the standalone binaries from the `node` npm package (`npx node@22`).
 - **Two arms, one difference.** Each trial gets a fresh workspace scaffolded like
-  `sploit new` does (`scope.txt`, `plan.md`, `notes.md`, `findings/`,
-  `.sploit/activity.jsonl`). The skills arm adds a `skills/` symlink, `AGENTS.md`,
+  `secskills new` does (`scope.txt`, `plan.md`, `notes.md`, `findings/`,
+  `.secskills/activity.jsonl`). The skills arm adds a `skills/` symlink, `AGENTS.md`,
   and `CLAUDE.md`; the baseline arm doesn't. Both arms run with the same model,
   the same neutral prompt ([prompts/juice-shop.txt](prompts/juice-shop.txt) — no
   technique hints, no skill mentions), and identical flags
   (`--setting-sources project --strict-mcp-config` + empty MCP config, so no
   user-level settings leak into either arm). The baseline additionally gets
-  `--disable-slash-commands`, which hides the SploitAgent skills a
-  `sploit install` user has in `~/.claude/skills` — verified by a dry run in which
+  `--disable-slash-commands`, which hides the Security Skills skills a
+  `secskills install` user has in `~/.claude/skills` — verified by a dry run in which
   the baseline agent reports zero skills available while the default run lists
   200+.
 - **Scoring is un-gameable.** Juice Shop logs every solved challenge

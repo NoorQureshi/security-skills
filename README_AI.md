@@ -1,4 +1,4 @@
-# SploitAgent — bootstrap for AI agents
+# Security Skills — bootstrap for AI agents
 
 You are an AI agent. This repo is a **skill library**: 161 trigger-loaded security skills across 20
 domains, offensive and defensive. The full operating guide is [AGENTS.md](AGENTS.md) — read it when
@@ -37,7 +37,7 @@ Verify success.**
 - **Write findings** as you confirm them: `findings/<nn>-<slug>.md` with summary, numbered
   reproduction steps, proof, impact, and remediation — so a human can reproduce every claim.
 - Keep `plan.md` and `notes.md` current, and log decisions/findings (lead, status, rationale) to
-  `.sploit/activity.jsonl` so a human can follow and audit you.
+  `.secskills/activity.jsonl` so a human can follow and audit you.
 - Minimize footprint; clean up test artifacts (accounts, uploads) when done.
 
 If this repo was cloned into your workspace, everything you need is local — there is nothing to

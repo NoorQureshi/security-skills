@@ -2,16 +2,16 @@
 
 <div align="center">
 
-# 🥷 SploitAgent
+# 🥷 Security Skills(安全技能库)
 
 **为 AI 智能体打造的安全技能库。**
-161 项进攻 + 防守技术,你的 AI 智能体按需加载,在**已授权**的目标上作业——从侦察到报告。
+206 项进攻 + 防守技术,你的 AI 智能体按需加载,在**已授权**的目标上作业——从侦察到报告。
 
 [![CI](https://github.com/NoorQureshi/security-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/NoorQureshi/security-skills/actions/workflows/ci.yml)
-![skills](https://img.shields.io/badge/skills-161-334155?style=flat-square)
+![skills](https://img.shields.io/badge/skills-206-334155?style=flat-square)
 ![domains](https://img.shields.io/badge/domains-20-334155?style=flat-square)
 ![mapped](https://img.shields.io/badge/mapped-OWASP%20%C2%B7%20MITRE%20ATT%26CK-334155?style=flat-square)
-![routing](https://img.shields.io/badge/routing-483%20trigger%20cases%20CI--verified-334155?style=flat-square)
+![routing](https://img.shields.io/badge/routing-618%20trigger%20cases%20CI--verified-334155?style=flat-square)
 ![license](https://img.shields.io/badge/license-MIT-334155?style=flat-square)
 
 <sub>[文档](https://noorqureshi.github.io/security-skills/) · [工作原理](https://noorqureshi.github.io/security-skills/interact.html) · [搜索技能](https://noorqureshi.github.io/security-skills/catalog.html) · [参与贡献](CONTRIBUTING.md)</sub>
@@ -22,16 +22,16 @@
 
 <p align="center">
   <img src="docs/screenshots/demo.svg" width="820"
-       alt="Terminal replay: Claude Code with SploitAgent skills solves 9 of 116 OWASP Juice Shop challenges in 10 minutes">
+       alt="Terminal replay: Claude Code with Security Skills solves 9 of 116 OWASP Juice Shop challenges in 10 minutes">
 </p>
 
 **实测基准,而非空口宣称。** 上方回放来自一次真实运行:目标是 OWASP Juice Shop(116 个挑战,本地运行),搭载这些技能的智能体在 **10 分钟内解出 9 个挑战**——SQLi 认证绕过、UNION 凭据拖库、XXE、JWT 算法混淆、BOLA——每一个都附有成文的漏洞发现。评分取自目标自身的解题日志,绝不采信智能体的一面之词。完整的 A/B 对比(有技能 vs 无技能)以及自行复现的方法,见 [bench/RESULTS.md](bench/RESULTS.md)。
 
 ## 这是什么
 
-你的 AI 智能体是个很强的通才,但它并不知道某项具体工作的*确切方法*——比如测试 API 的访问控制缺陷。**SploitAgent 补上的正是这块短板:** 一册 161 页的"如何做好这一项技术"的简明手册,智能体需要哪页就翻到哪页。
+你的 AI 智能体是个很强的通才,但它并不知道某项具体工作的*确切方法*——比如测试 API 的访问控制缺陷。**Security Skills 补上的正是这块短板:** 一册 206 页的"如何做好这一项技术"的简明手册,智能体需要哪页就翻到哪页。
 
-它也不会取代你的工具箱:这些技能会教你的智能体何时、如何驱动你手上已有的工具——sqlmap、nmap、ffuf、nuclei、Burp Suite、Ghidra、Frida、hashcat、Impacket——包含每项工作所需的确切命令、后续动作和验证步骤。机器可读的路由表([`data/routing.json`](data/routing.json)——**483 条触发用例,CI 验证**)让任何智能体或集成都能确定性地选对技能,无需猜测提示词。
+它也不会取代你的工具箱:这些技能会教你的智能体何时、如何驱动你手上已有的工具——sqlmap、nmap、ffuf、nuclei、Burp Suite、Ghidra、Frida、hashcat、Impacket——包含每项工作所需的确切命令、后续动作和验证步骤。机器可读的路由表([`data/routing.json`](data/routing.json)——**618 条触发用例,CI 验证**)让任何智能体或集成都能确定性地选对技能,无需猜测提示词。
 
 你用大白话描述任务 → 它挑出正确的技能页、执行、证实漏洞并写成报告 → 且绝不触碰你设定范围之外的任何东西。
 
@@ -52,17 +52,17 @@
 > **需要:** 一个 AI 智能体——[Claude Code](https://claude.com/claude-code)、[OpenCode](https://opencode.ai)、Codex、Gemini,或你自己的 API 脚本——外加 `git` 和一个终端。`python3` 仅可选控制台需要。
 
 ```console
-# 1 · install once — links the skills into your agent + puts `sploit` on PATH
-$ git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
-$ ./sploit install
+# 1 · install once — links the skills into your agent + puts `secskills` on PATH
+$ git clone https://github.com/NoorQureshi/security-skills && cd security-skills
+$ ./secskills install
 
 # 2 · make a workspace for your target (anywhere) and set the boundary
-$ sploit new acme.com ~/work/acme
+$ secskills new acme.com ~/work/acme
 $ cd ~/work/acme
 $ nano scope.txt                     # your authorized target(s) — nothing else gets touched
 
 # 3 · (optional) watch the agent work, live, in your browser
-$ sploit watch                       # runs in the background · stop: sploit watch --stop
+$ secskills watch                    # runs in the background · stop: secskills watch --stop
 
 # 4 · open your agent in the workspace and describe the task   ↓ (Claude Code / OpenCode below)
 ```
@@ -88,7 +88,7 @@ $ sploit watch                       # runs in the background · stop: sploit wa
   ✔ wrote findings/idor-orders.md
 ```
 
-`./sploit install` 已把技能链接到 `~/.claude/skills/`(并以同样方式接入了检测到的其他智能体),所以 Claude Code 能在**任何**文件夹中找到它们,并自动加载符合你请求的那一个。
+`./secskills install` 已把技能链接到 `~/.claude/skills/`(并以同样方式接入了检测到的其他智能体),所以 Claude Code 能在**任何**文件夹中找到它们,并自动加载符合你请求的那一个。
 </details>
 
 <details>
@@ -97,7 +97,7 @@ $ sploit watch                       # runs in the background · stop: sploit wa
 ```console
 ~/work/acme $ opencode        # launches the TUI in this folder, using your own model/API key
 
-> Use the SploitAgent skills in ./skills. Start an authorized assessment of
+> Use the Security Skills library in ./skills. Start an authorized assessment of
   acme.com — confirm scope from scope.txt, then recon the attack surface.
 
   → reads AGENTS.md + ./skills · loads recon-* then routes by what it finds
@@ -112,7 +112,7 @@ $ sploit watch                       # runs in the background · stop: sploit wa
 ```console
 ~/work/acme $ codex           # or: gemini  — run inside the workspace
 
-> Use the SploitAgent skills here. Start an authorized assessment of acme.com,
+> Use the Security Skills library here. Start an authorized assessment of acme.com,
   confirm scope from scope.txt, then recon.
 ```
 
@@ -120,9 +120,9 @@ $ sploit watch                       # runs in the background · stop: sploit wa
 </details>
 
 <details>
-<summary><b>可选:在浏览器中实时观察智能体(<code>sploit watch</code>)</b></summary>
+<summary><b>可选:在浏览器中实时观察智能体(<code>secskills watch</code>)</b></summary>
 
-终端就是完整的工作流——但如果你想实时、**只读**地查看智能体在做什么,`sploit watch` 会在 `http://127.0.0.1:8787` 打开一个小型仪表盘。它只是读取磁盘上的工作区,所以无论你运行哪个智能体,表现都一致。
+终端就是完整的工作流——但如果你想实时、**只读**地查看智能体在做什么,`secskills watch` 会在 `http://127.0.0.1:8787` 打开一个小型仪表盘。它只是读取磁盘上的工作区,所以无论你运行哪个智能体,表现都一致。
 
 <p align="center">
   <img src="docs/screenshots/attack-map.png" width="820"
@@ -156,7 +156,7 @@ $ sploit watch                       # runs in the background · stop: sploit wa
 
 ## 里面有什么
 
-**161 个技能,横跨 20 个领域。** [🔎 搜索全部](https://noorqureshi.github.io/security-skills/catalog.html) · 或浏览 [CATALOG.md](CATALOG.md)。
+**206 个技能,横跨 23 个领域。** [🔎 搜索全部](https://noorqureshi.github.io/security-skills/catalog.html) · 或浏览 [CATALOG.md](CATALOG.md)。
 
 `web` · `api` · `cloud` · `ad` · `network` · `wireless` · `recon` · `mobile` · `ai-ml` · `code-review` · `reverse-engineering` · `ctf` · `hardware` · `cryptography` · `exploit-dev` · `privesc` · `payloads` · `tools` · `defense` · `reporting` · `automation` · `tradecraft` · `social-eng`
 
@@ -192,7 +192,7 @@ $ sploit watch                       # runs in the background · stop: sploit wa
 
 ## 仅限授权使用
 
-仅用于你**被允许**开展的安全工作——已签署的渗透测试范围、将目标列入范围的漏洞赏金项目,或你自有的系统。每次行动加载的第一个技能是 `tradecraft-scope-roe`:它确认授权,并拒绝任何不在你 `scope.txt` 之内的目标。如需报告 SploitAgent 本身的漏洞,请见 [SECURITY.md](SECURITY.md)。
+仅用于你**被允许**开展的安全工作——已签署的渗透测试范围、将目标列入范围的漏洞赏金项目,或你自有的系统。每次行动加载的第一个技能是 `tradecraft-scope-roe`:它确认授权,并拒绝任何不在你 `scope.txt` 之内的目标。如需报告 Security Skills 本身的漏洞,请见 [SECURITY.md](SECURITY.md)。
 
 ## 参与贡献
 

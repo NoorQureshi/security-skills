@@ -6,16 +6,16 @@ cd "$(dirname "$0")/.."
 
 ok(){ printf '  \033[32m✓\033[0m %s\n' "$1"; }
 
-echo "SploitAgent — local checks"
+echo "Security Skills — local checks"
 
 python3 -m py_compile tools/catalog.py tools/test_routing.py tools/console/server.py tools/hooks/*.py tools/demo_svg.py bench/*.py
 ok "python files compile"
 
-bash -n sploit install.sh bench/*.sh
+bash -n secskills install.sh bench/*.sh
 ok "shell syntax"
 
 if command -v shellcheck >/dev/null 2>&1; then
-  shellcheck --severity=error sploit install.sh
+  shellcheck --severity=error secskills install.sh
   ok "shellcheck (errors)"
 else
   echo "  · shellcheck not installed — skipping (CI still runs it)"

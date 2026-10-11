@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/noorqureshi/SploitAgent/schemas/skill.schema.json",
-  "title": "SploitAgent Skill frontmatter",
+  "$id": "https://github.com/NoorQureshi/security-skills/schemas/skill.schema.json",
+  "title": "Security Skills skill frontmatter",
   "description": "Contract for the YAML frontmatter of every skills/<domain>/<slug>/SKILL.md. Validated by `tools/catalog.py` and CI.",
   "type": "object",
   "required": [

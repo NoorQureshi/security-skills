@@ -1,4 +1,4 @@
-<!-- Thanks for contributing to SploitAgent! Keep PRs small and focused. -->
+<!-- Thanks for contributing to Security Skills! Keep PRs small and focused. -->
 
 ## What this changes
 
@@ -8,7 +8,7 @@
 
 - [ ] New skill
 - [ ] Fix/improve an existing skill
-- [ ] Tooling (`sploit`, `install.sh`, console, `catalog.py`)
+- [ ] Tooling (`secskills`, `install.sh`, console, `catalog.py`)
 - [ ] Docs
 
 ## Checklist

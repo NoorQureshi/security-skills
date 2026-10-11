@@ -24,8 +24,8 @@ jobs:
 
       - name: Shell scripts — syntax + lint (real errors only)
         run: |
-          bash -n sploit install.sh bench/*.sh
-          shellcheck --severity=error sploit install.sh
+          bash -n secskills install.sh bench/*.sh
+          shellcheck --severity=error secskills install.sh
 
       - name: Skill schema is valid JSON
         run: python3 -c "import json; json.load(open('schemas/skill.schema.json'))"

@@ -2291,7 +2291,7 @@
     "defense"
    ],
    "severity": "info",
-   "summary": "Cross-domain pentest tool selection \u2014 which tool for which job, and which SploitAgent skill to load for it.",
+   "summary": "Cross-domain pentest tool selection \u2014 which tool for which job, and which Security Skills skill to load for it.",
    "tags": [],
    "path": "skills/tools/tools-arsenal"
   },

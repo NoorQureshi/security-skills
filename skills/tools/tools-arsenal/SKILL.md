@@ -1,7 +1,7 @@
 ---
 name: tools-arsenal
 description: >
-  Cross-domain pentest tool selection — which tool for which job, and which SploitAgent skill to
+  Cross-domain pentest tool selection — which tool for which job, and which Security Skills skill to
   load for it. Load at engagement start or whenever a new surface appears and you need the right
   scanner/framework/wordlist. Signals: "which tool for", tool selection, arsenal, SecLists,
   PayloadsAllTheThings, searchsploit, "what do I scan this with".
@@ -18,7 +18,7 @@ schema_version: 1
 ## When it applies
 Engagement kickoff, a new surface just appeared, or you're staring at a job ("crack this hash",
 "fuzz this endpoint", "exploit this CVE") and need the right tool fast. This is the routing layer
-for the `tools` domain — it points at the tool *and* the SploitAgent skill that teaches the
+for the `tools` domain — it points at the tool *and* the Security Skills skill that teaches the
 technique. Scope first, always: `tradecraft-scope-roe` + `scope.txt` before anything sends packets.
 
 ## By job

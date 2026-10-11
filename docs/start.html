@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Getting Started — SploitAgent</title>
-<meta name="description" content="Install SploitAgent and use it with Claude Code, Codex, Gemini, or a local model in under a minute.">
+<title>Getting Started — Security Skills</title>
+<meta name="description" content="Install Security Skills and use it with Claude Code, Codex, Gemini, or a local model in under a minute.">
 <meta property="og:image" content="https://noorqureshi.github.io/security-skills/social-preview.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/style.css">
@@ -12,7 +12,7 @@
 <body>
 
 <nav class="nav"><div class="wrap">
-  <a class="brand" href="index.html">Sploit<span class="a">Agent</span></a>
+  <a class="brand" href="index.html">Security<span class="a">Skills</span></a>
   <a class="link" href="index.html">Home</a>
   <a class="link active" href="start.html">Getting Started</a>
   <a class="link" href="interact.html">How it works</a>
@@ -26,7 +26,7 @@
 <main class="wrap page">
   <p class="kicker">GETTING STARTED</p>
   <h1 class="title">Use it with any agent</h1>
-  <p class="lead">SploitAgent is plain Markdown — there is no runtime to install. You give an agent read
+  <p class="lead">Security Skills is plain Markdown — there is no runtime to install. You give an agent read
     access to the <code>skills/</code> folder and its operating guide, and it loads the right skill for
     each task on its own. Below is the one-minute setup for the common agents.</p>
 
@@ -34,21 +34,21 @@
     <h2><span class="hash">#</span> Three commands to your first engagement</h2>
     <div class="step"><div class="num">1</div><div class="body">
       <p>Clone the repo and run the installer once — it exposes the skills to Claude Code everywhere
-        and puts the <code>sploit</code> command on your <code>PATH</code>.</p>
+        and puts the <code>secskills</code> command on your <code>PATH</code>.</p>
 <pre>git clone https://github.com/NoorQureshi/security-skills
-cd SploitAgent
-./sploit install</pre>
+cd security-skills
+./secskills install</pre>
     </div></div>
     <div class="step"><div class="num">2</div><div class="body">
       <p>Scaffold a workspace for your target <b>anywhere you like</b>. The folder gets the skills and
         operating guide wired in, so it's self-contained — it doesn't have to live inside the repo.</p>
-<pre>sploit new acme.com ~/work/acme     <span class="c"># or just: sploit new acme.com</span>
+<pre>secskills new acme.com ~/work/acme  <span class="c"># or just: secskills new acme.com</span>
 cd ~/work/acme</pre>
       <p style="margin-top:6px">Put your authorized targets in <code>scope.txt</code>, then open your agent here.</p>
 <pre>claude          <span class="c"># or: opencode · codex · gemini</span></pre>
       <p style="margin-top:6px">Want to see the agent's plan and live activity while it works? Run
-        <code>sploit watch</code> — it opens a read-only console in your browser and runs in the
-        <b>background</b>, so this terminal stays free (<code>sploit watch --stop</code> to stop).</p>
+        <code>secskills watch</code> — it opens a read-only console in your browser and runs in the
+        <b>background</b>, so this terminal stays free (<code>secskills watch --stop</code> to stop).</p>
     </div></div>
     <div class="step"><div class="num">3</div><div class="body">
       <p>Just describe the task — the matching skill loads itself and works the loop
@@ -66,16 +66,16 @@ Confirm scope, then recon the attack surface.</pre>
       <div class="card">
         <h3>Claude Code</h3>
 <pre>git clone https://github.com/NoorQureshi/security-skills
-cd SploitAgent
+cd security-skills
 claude</pre>
         <p style="margin-top:10px">Or expose the skills to <b>every</b> project once:</p>
-<pre>cd SploitAgent
+<pre>cd security-skills
 ./install.sh   <span class="c"># --project · --uninstall</span></pre>
       </div>
       <div class="card">
         <h3>Codex / Gemini / other CLI agents</h3>
 <pre>git clone https://github.com/NoorQureshi/security-skills
-cd SploitAgent
+cd security-skills
 codex        <span class="c"># or: gemini</span></pre>
         <p style="margin-top:10px">They read <code>AGENTS.md</code> automatically. For a one-off, paste a single
           <code>SKILL.md</code> into the chat.</p>
@@ -85,8 +85,8 @@ codex        <span class="c"># or: gemini</span></pre>
         <p style="margin-bottom:10px">Bake the operating guide into a model so it always knows the method:</p>
 <pre>printf 'FROM qwen2.5-coder:14b\nSYSTEM """%s"""' \
   "$(cat AGENTS.md)" &gt; Modelfile
-ollama create sploitagent -f Modelfile
-ollama run sploitagent</pre>
+ollama create security-skills -f Modelfile
+ollama run security-skills</pre>
       </div>
       <div class="card">
         <h3>Any other agent / framework</h3>
@@ -100,7 +100,7 @@ ollama run sploitagent</pre>
   <section>
     <h2><span class="hash">#</span> Before you run it</h2>
     <p class="warn"><b>Authorized use only.</b> The first skill every engagement loads is
-      <code>tradecraft-scope-roe</code>. SploitAgent acts only inside a confirmed envelope — a signed
+      <code>tradecraft-scope-roe</code>. Security Skills acts only inside a confirmed envelope — a signed
       pentest scope, a bug-bounty program you are in scope for, or systems you own. If scope is unclear
       it stops and asks. <a href="safety.html" style="color:#ffd0cc">Read the full rule →</a></p>
   </section>
@@ -112,7 +112,7 @@ ollama run sploitagent</pre>
 </main>
 
 <footer>
-  <p>SploitAgent · MIT · for authorized security work only.<br>
+  <p>Security Skills · MIT · for authorized security work only.<br>
   <a href="https://github.com/NoorQureshi/security-skills">github.com/NoorQureshi/security-skills</a></p>
 </footer>
 

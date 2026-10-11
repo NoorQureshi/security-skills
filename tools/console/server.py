@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SploitAgent console — a tiny, read-only, local dashboard.
+"""Security Skills console — a tiny, read-only, local dashboard.
 
 Shows what an agent is doing in an engagement (plan, live activity, findings) and
 the skills library — by reading the workspace on disk, so it works with ANY agent
@@ -7,14 +7,14 @@ the skills library — by reading the workspace on disk, so it works with ANY ag
 no control over the agent. Binds to 127.0.0.1 only.
 
 Run:  python3 tools/console/server.py [--port 8787] [--no-open]
-Or:   sploit watch
+Or:   secskills watch
 """
 import argparse, glob, json, os, re, threading, webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
 HOME = os.path.expanduser("~")
-REG  = os.path.join(HOME, ".sploit", "engagements.jsonl")
+REG  = os.path.join(HOME, ".secskills", "engagements.jsonl")
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))          # tools/console/ -> repo root
 
@@ -47,7 +47,7 @@ def registry():
 
 def activity(path, tail=800):
     out = []
-    for line in _read(os.path.join(path, ".sploit", "activity.jsonl")).splitlines()[-tail:]:
+    for line in _read(os.path.join(path, ".secskills", "activity.jsonl")).splitlines()[-tail:]:
         line = line.strip()
         if not line:
             continue
@@ -136,7 +136,7 @@ def main():
     a = ap.parse_args()
     srv = ThreadingHTTPServer(("127.0.0.1", a.port), H)
     url = f"http://127.0.0.1:{a.port}"
-    print(f"SploitAgent console → {url}   (read-only · local · Ctrl-C to stop)")
+    print(f"Security Skills console → {url}   (read-only · local · Ctrl-C to stop)")
     if not a.no_open:
         threading.Timer(0.6, lambda: webbrowser.open(url)).start()
     try:

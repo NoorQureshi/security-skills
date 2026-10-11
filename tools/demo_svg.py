@@ -41,7 +41,7 @@ C_SKILL, C_OK, C_OKNAME = "#56d4dd", "#3fb950", "#7ee787"
 C_DIM, C_BRIGHT = "#8b949e", "#f0f6fc"
 FONT = "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
 TITLE = "claude — ~/work/js — OWASP Juice Shop (127.0.0.1:3000)"
-ARIA = "Terminal replay: Claude Code with SploitAgent skills solves 9 of 116 OWASP Juice Shop challenges in 10 minutes"
+ARIA = "Terminal replay: Claude Code with Security Skills solves 9 of 116 OWASP Juice Shop challenges in 10 minutes"
 
 
 def ts(v):

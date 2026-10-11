@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# SploitAgent installer — expose the skill library to every AI agent on this machine.
+# Security Skills installer — expose the skill library to every AI agent on this machine.
 #
 # Claude Code discovers skills exactly one directory deep
 # (~/.claude/skills/<name>/SKILL.md), but this library is organised by domain
@@ -58,22 +58,22 @@ done
 if   [ -n "$DEST_OVERRIDE" ]; then DEST="$DEST_OVERRIDE"
 elif [ "$SCOPE" = "project" ]; then DEST="$PWD/.claude/skills"
 else DEST="$HOME/.claude/skills"; fi
-MANIFEST="$DEST/.sploitagent-manifest"   # records the slugs we created, for clean uninstall
-AGENTS_MANIFEST="$DEST/.sploitagent-agents"  # records the other agents we wired (name/kind/path)
+MANIFEST="$DEST/.secskills-manifest"   # records the slugs we created, for clean uninstall
+AGENTS_MANIFEST="$DEST/.secskills-agents"  # records the other agents we wired (name/kind/path)
 
 # Global agent wiring only makes sense for the default user-scope install.
 GLOBAL=0
 if [ "$SCOPE" = "user" ] && [ -z "$DEST_OVERRIDE" ]; then GLOBAL=1; fi
 
-BLOCK_BEGIN='<!-- BEGIN SPLOITAGENT MANAGED BLOCK'
-BLOCK_END='<!-- END SPLOITAGENT MANAGED BLOCK -->'
+BLOCK_BEGIN='<!-- BEGIN SECURITY-SKILLS MANAGED BLOCK'
+BLOCK_END='<!-- END SECURITY-SKILLS MANAGED BLOCK -->'
 
 tilde(){ printf '%s' "${1/#$HOME/~}"; }
 
 # Link (or copy) every skill into a flat skills dir. Prints "<count> <skipped>".
 link_skills(){
   local dest="$1"
-  local manifest="$dest/.sploitagent-manifest"
+  local manifest="$dest/.secskills-manifest"
   local skill slug target count=0 skipped=0
   mkdir -p "$dest"
   : > "$manifest.tmp"
@@ -97,7 +97,7 @@ link_skills(){
 # Remove the skills a previous install linked into a dir. Prints the count removed.
 unlink_skills(){
   local dest="$1"
-  local manifest="$dest/.sploitagent-manifest" slug n=0
+  local manifest="$dest/.secskills-manifest" slug n=0
   if [ -f "$manifest" ]; then
     while IFS= read -r slug; do
       [ -n "$slug" ] || continue
@@ -111,7 +111,7 @@ unlink_skills(){
 write_block(){
   cat <<EOF
 $BLOCK_BEGIN — added by install.sh; do not edit between these markers -->
-## SploitAgent — security skill library (authorized testing only)
+## Security Skills — security skill library (authorized testing only)
 
 A library of security skills for AI agents lives at: $REPO_DIR
 - Confirm scope FIRST: read \`skills/tradecraft/tradecraft-scope-roe/SKILL.md\` there and
@@ -128,7 +128,7 @@ remove_block(){
   local file="$1" tmp
   [ -f "$file" ] || return 0
   grep -qF "$BLOCK_BEGIN" "$file" || return 0
-  tmp="$file.sploitagent-tmp.$$"
+  tmp="$file.secskills-tmp.$$"
   awk -v b="$BLOCK_BEGIN" -v e="$BLOCK_END" '
     index($0, b) { inblk=1; next }
     inblk && index($0, e) { inblk=0; next }
@@ -148,7 +148,7 @@ add_block(){
 
 if [ "$ACTION" = "uninstall" ]; then
   n="$(unlink_skills "$DEST")"
-  echo "SploitAgent: removed $n skill(s) from $DEST"
+  echo "Security Skills: removed $n skill(s) from $DEST"
   if [ "$GLOBAL" -eq 1 ] && [ -f "$AGENTS_MANIFEST" ]; then
     while IFS='	' read -r name kind path; do
       [ -n "$name" ] || continue
@@ -177,7 +177,7 @@ fi
 res="$(link_skills "$DEST")"
 count="${res%% *}"; skipped="${res##* }"
 
-echo "SploitAgent: installed $count skill(s) into $DEST"
+echo "Security Skills: installed $count skill(s) into $DEST"
 [ "$skipped" -gt 0 ] && echo "  ($skipped skipped — a different skill already occupies that name)"
 
 # --- wire the other detected agents (user scope only) -------------------------

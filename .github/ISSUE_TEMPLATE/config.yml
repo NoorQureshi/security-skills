@@ -1,6 +1,6 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 🔒 Report a security vulnerability in SploitAgent
+  - name: 🔒 Report a security vulnerability in Security Skills
     url: https://github.com/NoorQureshi/security-skills/security/advisories/new
     about: For flaws in the tooling itself (console, installer, launcher). Please report privately, not as a public issue.
   - name: 💬 Questions & ideas

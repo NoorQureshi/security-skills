@@ -1,6 +1,6 @@
-# SploitAgent — operating guide for AI agents
+# Security Skills — operating guide for AI agents
 
-You are an AI agent (Claude Code, Codex, Gemini, or any other) working with SploitAgent, a library of
+You are an AI agent (Claude Code, Codex, Gemini, or any other) working with Security Skills, a library of
 security skills. This file tells you how to use it. Keep it short in your head: **confirm scope →
 pick the skill that matches the task → follow it → prove impact → report.**
 
@@ -24,7 +24,7 @@ grep `skills/`). Load that one `SKILL.md` and work its sections in order:
 Work one lead at a time; load the next skill as new leads appear.
 
 ## The loop (how to work a target)
-1. **Set up & plan** — create the engagement workspace (below), or run `./sploit new <target>` to
+1. **Set up & plan** — create the engagement workspace (below), or run `./secskills new <target>` to
    scaffold it; write `scope.txt` (+ `roe.md` for bug bounty). Then load `tradecraft-attack-scenarios`
    to turn the objective + scope into an ordered plan, and re-plan as evidence comes in.
 2. **Recon** — `recon-*` (subdomains, DNS, content/JS discovery, OSINT, services).
@@ -58,19 +58,19 @@ engagements/<target>/
   notes.md               # timestamped running log — the source of truth for the report
   findings/              # confirmed findings + evidence, one file per finding
   loot/                  # captured data / artifacts
-  .sploit/activity.jsonl # one JSON line per step, so a human/console can follow you
+  .secskills/activity.jsonl # one JSON line per step, so a human/console can follow you
 ```
 
 ## Show your work — so a human can follow *and* audit you
 Externalise your reasoning into the workspace as you go, so anyone — a teammate, or the read-only
-`sploit watch` console — can see not just *what* you did but *why*, across **any** tool (Claude Code,
+`secskills watch` console — can see not just *what* you did but *why*, across **any** tool (Claude Code,
 OpenCode, Codex, Gemini, an API script). Three files carry it:
 
 ### 1. `plan.md` — the living strategy
 Write it up front and keep it current: the objective, an ordered strategy as a checkbox list (tick
 items as you go), and a one-line "current focus". This is your thinking, on disk.
 
-### 2. `.sploit/activity.jsonl` — one JSON line per meaningful step
+### 2. `.secskills/activity.jsonl` — one JSON line per meaningful step
 This is the spine of the console's **Attack Map** and timeline. Append a line whenever you decide
 something, try something, or learn something:
 
@@ -98,7 +98,7 @@ something, try something, or learn something:
 
 **Log the reasoning layer religiously:** a `decision` with `lead` + `rationale` + `status` every time
 you open, rule out, or park a lead; a `finding` with `severity` + `refs` when you confirm one. If you
-are running under **Claude Code**, the auto-capture hook (`.sploit/cc-activity-hook.py`, wired in
+are running under **Claude Code**, the auto-capture hook (`.secskills/cc-activity-hook.py`, wired in
 `.claude/settings.json`) already records your shell commands and web requests, so you don't need to
 log routine `command`/`result` lines by hand — spend your logging on decisions, leads, and findings.
 Under any other tool, also log the key `command`/`result` steps yourself.

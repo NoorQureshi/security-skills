@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SploitAgent — Claude Code Stop hook that stops the agent giving up early.
+"""Security Skills — Claude Code Stop hook that stops the agent giving up early.
 
 The failure it fixes: the agent tries a couple of payloads on a feature, marks it
 "not vulnerable", and pivots — instead of giving that lead the depth a real tester
@@ -9,15 +9,15 @@ Claude Code runs this when the agent tries to END its turn. It reads the engagem
 activity log (next to this hook) and, if a lead was marked status:"failed" WITHOUT a
 substantive coverage rationale, it BLOCKS the stop and tells the agent to go deeper
 or honestly downgrade the lead to status:"open". It nudges once per stop cycle
-(respects stop_hook_active) so it can never loop, only runs inside a sploit
+(respects stop_hook_active) so it can never loop, only runs inside a secskills
 workspace, and fails open on any error — it must never wedge a session.
 
-Wiring (done by `sploit new`): a copy lives at <workspace>/.sploit/cc-thoroughness-hook.py
+Wiring (done by `secskills new`): a copy lives at <workspace>/.secskills/cc-thoroughness-hook.py
 and <workspace>/.claude/settings.json registers it as a Stop hook.
 """
 import sys, os, json
 
-HERE = os.path.dirname(os.path.abspath(__file__))     # <workspace>/.sploit
+HERE = os.path.dirname(os.path.abspath(__file__))     # <workspace>/.secskills
 LOG  = os.path.join(HERE, "activity.jsonl")
 MIN_RATIONALE = 60   # a real "here's what I covered" note, not just "not vuln"
 

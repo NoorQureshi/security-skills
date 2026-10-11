@@ -1,6 +1,6 @@
-# SploitAgent — for Claude Code
+# Security Skills — for Claude Code
 
-You are in **SploitAgent**, an open library of security skills. Use it via the operating guide below,
+You are in **Security Skills**, an open library of security skills. Use it via the operating guide below,
 which applies to every agent:
 
 @AGENTS.md

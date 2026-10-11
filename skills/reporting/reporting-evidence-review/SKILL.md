@@ -51,7 +51,7 @@ with a written reason.
       checks (`reporting-triage-validation`).
 
 **3. Lead & timeline coverage**
-- [ ] Every lead in `.sploit/activity.jsonl` / `plan.md` has a terminal status — `confirmed`,
+- [ ] Every lead in `.secskills/activity.jsonl` / `plan.md` has a terminal status — `confirmed`,
       `failed` (with variation-matrix rationale), `blocked`, or `skipped` (with why). No lead
       silently evaporates.
 - [ ] `notes.md` timestamps let a reviewer reconstruct the order of operations; clock and
