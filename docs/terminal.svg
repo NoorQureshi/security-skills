@@ -5,7 +5,7 @@
 <rect x="0" y="30" width="880" height="12" fill="#161b22"/>
 <circle cx="24" cy="21" r="6" fill="#ff5f56"/><circle cx="46" cy="21" r="6" fill="#ffbd2e"/><circle cx="68" cy="21" r="6" fill="#27c93f"/>
 <text x="440" y="26" text-anchor="middle" fill="#9aa4b2" font-size="13">SploitAgent · Claude Code</text>
-<text x="26" y="70"><tspan fill="#39d353" xml:space="preserve">$ </tspan><tspan fill="#e6edf3" xml:space="preserve">git clone github.com/NoorQureshi/SploitAgent &amp;&amp; cd SploitAgent</tspan></text>
+<text x="26" y="70"><tspan fill="#39d353" xml:space="preserve">$ </tspan><tspan fill="#e6edf3" xml:space="preserve">git clone github.com/NoorQureshi/security-skills &amp;&amp; cd SploitAgent</tspan></text>
 <text x="26" y="95"><tspan fill="#39d353" xml:space="preserve">$ </tspan><tspan fill="#e6edf3" xml:space="preserve">claude</tspan></text>
 <text x="26" y="145"><tspan fill="#6b7688" xml:space="preserve"># just describe the task in plain English — the matching skill loads itself</tspan></text>
 <text x="26" y="170"><tspan fill="#58a6ff" xml:space="preserve">› </tspan><tspan fill="#e6edf3" xml:space="preserve">recon acme.tld, then test the API for broken access control (authorized)</tspan></text>

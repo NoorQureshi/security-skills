@@ -5,14 +5,14 @@
 **Security skills for AI agents.**
 206 offensive + defensive techniques your AI agent loads on demand to work an **authorized** target — from recon to report.
 
-[![CI](https://github.com/NoorQureshi/SploitAgent/actions/workflows/ci.yml/badge.svg)](https://github.com/NoorQureshi/SploitAgent/actions/workflows/ci.yml)
+[![CI](https://github.com/NoorQureshi/security-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/NoorQureshi/security-skills/actions/workflows/ci.yml)
 ![skills](https://img.shields.io/badge/skills-206-334155?style=flat-square)
 ![domains](https://img.shields.io/badge/domains-20-334155?style=flat-square)
 ![mapped](https://img.shields.io/badge/mapped-OWASP%20%C2%B7%20MITRE%20ATT%26CK-334155?style=flat-square)
 ![routing](https://img.shields.io/badge/routing-483%20trigger%20cases%20CI--verified-334155?style=flat-square)
 ![license](https://img.shields.io/badge/license-MIT-334155?style=flat-square)
 
-<sub>[Docs](https://noorqureshi.github.io/SploitAgent/) · [How it works](https://noorqureshi.github.io/SploitAgent/interact.html) · [Search skills](https://noorqureshi.github.io/SploitAgent/catalog.html) · [Contributing](CONTRIBUTING.md)</sub>
+<sub>[Docs](https://noorqureshi.github.io/security-skills/) · [How it works](https://noorqureshi.github.io/security-skills/interact.html) · [Search skills](https://noorqureshi.github.io/security-skills/catalog.html) · [Contributing](CONTRIBUTING.md)</sub>
 
 🌐 English | [中文](README_zh.md)
 
@@ -53,7 +53,7 @@ Same library, five ways in. Everything below runs in your terminal — install o
 
 ```console
 # 1 · install once — links the skills into your agent + puts `sploit` on PATH
-$ git clone https://github.com/NoorQureshi/SploitAgent && cd SploitAgent
+$ git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
 $ ./sploit install
 
 # 2 · make a workspace for your target (anywhere) and set the boundary
@@ -156,7 +156,7 @@ Under Claude Code a bundled hook records commands automatically, so the console 
 
 ## What's inside
 
-**206 skills across 20 domains.** [🔎 Search them all](https://noorqureshi.github.io/SploitAgent/catalog.html) · or browse [CATALOG.md](CATALOG.md).
+**206 skills across 20 domains.** [🔎 Search them all](https://noorqureshi.github.io/security-skills/catalog.html) · or browse [CATALOG.md](CATALOG.md).
 
 `web` · `api` · `cloud` · `ad` · `network` · `wireless` · `recon` · `mobile` · `ai-ml` · `code-review` · `reverse-engineering` · `ctf` · `hardware` · `cryptography` · `exploit-dev` · `privesc` · `payloads` · `tools` · `defense` · `reporting` · `automation` · `tradecraft` · `social-eng`
 

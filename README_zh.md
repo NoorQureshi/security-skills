@@ -7,14 +7,14 @@
 **为 AI 智能体打造的安全技能库。**
 161 项进攻 + 防守技术,你的 AI 智能体按需加载,在**已授权**的目标上作业——从侦察到报告。
 
-[![CI](https://github.com/NoorQureshi/SploitAgent/actions/workflows/ci.yml/badge.svg)](https://github.com/NoorQureshi/SploitAgent/actions/workflows/ci.yml)
+[![CI](https://github.com/NoorQureshi/security-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/NoorQureshi/security-skills/actions/workflows/ci.yml)
 ![skills](https://img.shields.io/badge/skills-161-334155?style=flat-square)
 ![domains](https://img.shields.io/badge/domains-20-334155?style=flat-square)
 ![mapped](https://img.shields.io/badge/mapped-OWASP%20%C2%B7%20MITRE%20ATT%26CK-334155?style=flat-square)
 ![routing](https://img.shields.io/badge/routing-483%20trigger%20cases%20CI--verified-334155?style=flat-square)
 ![license](https://img.shields.io/badge/license-MIT-334155?style=flat-square)
 
-<sub>[文档](https://noorqureshi.github.io/SploitAgent/) · [工作原理](https://noorqureshi.github.io/SploitAgent/interact.html) · [搜索技能](https://noorqureshi.github.io/SploitAgent/catalog.html) · [参与贡献](CONTRIBUTING.md)</sub>
+<sub>[文档](https://noorqureshi.github.io/security-skills/) · [工作原理](https://noorqureshi.github.io/security-skills/interact.html) · [搜索技能](https://noorqureshi.github.io/security-skills/catalog.html) · [参与贡献](CONTRIBUTING.md)</sub>
 
 </div>
 
@@ -53,7 +53,7 @@
 
 ```console
 # 1 · install once — links the skills into your agent + puts `sploit` on PATH
-$ git clone https://github.com/NoorQureshi/SploitAgent && cd SploitAgent
+$ git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
 $ ./sploit install
 
 # 2 · make a workspace for your target (anywhere) and set the boundary
@@ -156,7 +156,7 @@ $ sploit watch                       # runs in the background · stop: sploit wa
 
 ## 里面有什么
 
-**161 个技能,横跨 20 个领域。** [🔎 搜索全部](https://noorqureshi.github.io/SploitAgent/catalog.html) · 或浏览 [CATALOG.md](CATALOG.md)。
+**161 个技能,横跨 20 个领域。** [🔎 搜索全部](https://noorqureshi.github.io/security-skills/catalog.html) · 或浏览 [CATALOG.md](CATALOG.md)。
 
 `web` · `api` · `cloud` · `ad` · `network` · `wireless` · `recon` · `mobile` · `ai-ml` · `code-review` · `reverse-engineering` · `ctf` · `hardware` · `cryptography` · `exploit-dev` · `privesc` · `payloads` · `tools` · `defense` · `reporting` · `automation` · `tradecraft` · `social-eng`
 

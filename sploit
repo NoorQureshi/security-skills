@@ -11,7 +11,7 @@
 # because `sploit new` links the library into that folder.
 #
 # Typical:
-#   git clone https://github.com/NoorQureshi/SploitAgent && cd SploitAgent
+#   git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
 #   ./sploit install                       # once: skills everywhere + `sploit` on PATH
 #   sploit new acme.com ~/work/acme        # workspace anywhere you like
 #   cd ~/work/acme && claude               # then: "Start an authorized assessment of acme.com…"
@@ -231,7 +231,7 @@ Delete \`.claude/settings.json\` to turn both off.
 > Start an authorized assessment of **$target**. Confirm scope from scope.txt, then recon the
 > attack surface and tell me the highest-value leads.
 
-Full walkthrough: https://noorqureshi.github.io/SploitAgent/interact.html
+Full walkthrough: https://noorqureshi.github.io/security-skills/interact.html
 EOF
 
   say ""

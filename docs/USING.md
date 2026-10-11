@@ -18,7 +18,7 @@ Below are copy-paste setups and **example prompts** for each agent, plus local L
 **Option A — open Claude Code in the repo (zero setup).** It auto-reads `CLAUDE.md` (which imports
 `AGENTS.md`) and can load any `skills/**/SKILL.md`.
 ```bash
-git clone https://github.com/NoorQureshi/SploitAgent && cd SploitAgent
+git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
 claude
 ```
 Then, e.g.:
@@ -29,7 +29,7 @@ skill into `~/.claude/skills/` in the one-directory-deep layout Claude Code expe
 `ln -s` of the whole `skills/` tree won't work, because the skills are nested under domain folders),
 and wires every other detected agent (Kimi Code, Cursor, Codex, Gemini) at the same time:
 ```bash
-git clone https://github.com/NoorQureshi/SploitAgent
+git clone https://github.com/NoorQureshi/security-skills
 cd SploitAgent && ./install.sh          # --project scopes to one repo · --uninstall removes
 ```
 Now in any project: `"Use the web-ssrf skill on https://app.example.com (authorized)."`
@@ -40,7 +40,7 @@ Now in any project: `"Use the web-ssrf skill on https://app.example.com (authori
 
 Codex reads **`AGENTS.md`** from the working directory automatically.
 ```bash
-git clone https://github.com/NoorQureshi/SploitAgent && cd SploitAgent
+git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
 codex           # it picks up AGENTS.md; point it at skills/ as needed
 ```
 > *"Read AGENTS.md, then use skills/api/api-bola to test https://api.example.com/v1 (I'm authorized)."*
@@ -54,7 +54,7 @@ For a one-off without cloning, paste a single `SKILL.md` into the chat and give 
 Gemini CLI reads context files from the working directory (`GEMINI.md`/`AGENTS.md` conventions).
 Point it at the guide + a skill:
 ```bash
-git clone https://github.com/NoorQureshi/SploitAgent && cd SploitAgent
+git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
 gemini
 ```
 > *"Follow AGENTS.md. Load skills/web/web-xss and test the search box at https://example.com (authorized)."*
@@ -78,7 +78,7 @@ domains you want into that repo.
 
 `aider` can load files as read-only context with `--read`:
 ```bash
-git clone https://github.com/NoorQureshi/SploitAgent && cd SploitAgent
+git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
 aider --read AGENTS.md --read skills/web/web-ssrf/SKILL.md          # hosted model
 aider --model ollama/qwen2.5-coder:14b --read AGENTS.md             # local model
 ```
@@ -93,7 +93,7 @@ Local models don't auto-discover files, so you feed the guide + the relevant ski
 ### Ollama — bake the guide into a model (best experience)
 Create a local model preloaded with the operating guide:
 ```bash
-git clone https://github.com/NoorQureshi/SploitAgent && cd SploitAgent
+git clone https://github.com/NoorQureshi/security-skills && cd SploitAgent
 printf 'FROM qwen2.5-coder:14b\nSYSTEM """\n%s\n"""\n' "$(cat AGENTS.md)" > Modelfile
 ollama create sploitagent -f Modelfile
 ollama run sploitagent
