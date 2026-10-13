@@ -7,7 +7,7 @@ skills are plain Markdown.
 
 Two building blocks matter:
 - **`AGENTS.md`** — the operating guide (scope-first, the loop, how to pick a skill, per-engagement structure).
-- **`skills/`** — the 206 skills themselves; **`CATALOG.md`** is the browsable index.
+- **`skills/`** — the 206 skills themselves; **`docs/CATALOG.md`** is the browsable index.
 
 Below are copy-paste setups and **example prompts** for each agent, plus local LLMs.
 
@@ -141,4 +141,4 @@ retrieve by the task description — the `description:` lines are written to mat
 
 Every engagement starts with **scope**. The agent should load `tradecraft-scope-roe` and confirm
 you're inside a signed pentest scope, a bug-bounty program you're in scope for, or systems you own.
-Never point these skills at anything else. Full method: [`../methodology.md`](../methodology.md).
+Never point these skills at anything else. Full method: [`methodology.md`](methodology.md).

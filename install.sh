@@ -116,7 +116,7 @@ $BLOCK_BEGIN — added by install.sh; do not edit between these markers -->
 A library of security skills for AI agents lives at: $REPO_DIR
 - Confirm scope FIRST: read \`skills/tradecraft/tradecraft-scope-roe/SKILL.md\` there and
   refuse anything outside the user's authorized targets.
-- For any security task, pick the matching skill via \`data/routing.json\` or \`CATALOG.md\`
+- For any security task, pick the matching skill via \`data/routing.json\` or \`docs/CATALOG.md\`
   in that repo, then read \`skills/<domain>/<slug>/SKILL.md\` and follow its method.
 - Full operating guide: \`AGENTS.md\` in that repo.
 $BLOCK_END

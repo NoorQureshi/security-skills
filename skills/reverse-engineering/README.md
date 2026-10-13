@@ -11,4 +11,4 @@ cp -r skills/_templates/technique.md skills/reverse-engineering/<slug>/SKILL.md
 python3 tools/catalog.py
 ```
 
-Naming: domain-prefixed kebab-case, e.g. `reverse-eng-<thing>`. See the full table in [`CATALOG.md`](../../CATALOG.md).
+Naming: domain-prefixed kebab-case, e.g. `reverse-eng-<thing>`. See the full table in [`CATALOG.md`](../../docs/CATALOG.md).

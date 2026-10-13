@@ -112,7 +112,7 @@ fetch("skills.json").then(r=>r.json()).then(d=>{
   ["input","change"].forEach(e=>{$("#q").addEventListener(e,render);$("#domain").addEventListener(e,render);$("#mode").addEventListener(e,render);});
   render();
 }).catch(()=>{ $("#count").textContent="Could not load the catalog — browse it on GitHub instead.";
-  $("#list").innerHTML=`<div class="row"><a href="${REPO}CATALOG.md">Open CATALOG.md →</a></div>`; });
+  $("#list").innerHTML=`<div class="row"><a href="${REPO}docs/CATALOG.md">Open docs/CATALOG.md →</a></div>`; });
 </script>
 </body>
 </html>

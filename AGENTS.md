@@ -7,9 +7,9 @@ pick the skill that matches the task → follow it → prove impact → report.*
 ## What you have here
 - `skills/<domain>/<slug>/SKILL.md` — 206 trigger-loaded skills across 20 domains (offensive **and**
   defensive). Each has a `description:` that says *when* to load it, and a body that teaches the mechanism.
-- `CATALOG.md` — the full, browsable index of every skill.
-- `COVERAGE.md` — how skills map to OWASP / MITRE ATT&CK / CWE.
-- `methodology.md` — the full engagement method (this file is the short version).
+- `docs/CATALOG.md` — the full, browsable index of every skill.
+- `docs/COVERAGE.md` — how skills map to OWASP / MITRE ATT&CK / CWE.
+- `docs/methodology.md` — the full engagement method (this file is the short version).
 
 ## Rule zero — scope, always first
 Never scan, request, or exploit anything outside a **confirmed authorization envelope**. Before you
@@ -18,7 +18,7 @@ a signed pentest scope, a bug-bounty program the target is in scope for, or syst
 **If scope is unclear, STOP and ask the user.** Never touch out-of-scope or third-party systems.
 
 ## How to pick a skill
-Match the task in front of you to a skill's `description:` trigger line (skim `CATALOG.md`, or
+Match the task in front of you to a skill's `description:` trigger line (skim `docs/CATALOG.md`, or
 grep `skills/`). Load that one `SKILL.md` and work its sections in order:
 **When it applies · Why it works · Method (exact commands) · Gotchas · Verify success.**
 Work one lead at a time; load the next skill as new leads appear.
@@ -104,7 +104,7 @@ log routine `command`/`result` lines by hand — spend your logging on decisions
 Under any other tool, also log the key `command`/`result` steps yourself.
 
 ### 3. `notes.md` + `findings/*.md` — written for a human to read
-Keep `notes.md` as a running log to the teach-the-mechanism standard in `methodology.md`
+Keep `notes.md` as a running log to the teach-the-mechanism standard in `docs/methodology.md`
 (**goal · command · result · why it worked · next lead**) — one dated block per lead. Write each
 confirmed issue as its own `findings/<nn>-<slug>.md` in this structure (the console renders it, and
 it drops straight into a report):

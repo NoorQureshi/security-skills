@@ -4,7 +4,7 @@ The heart of Security Skills: trigger-tagged skills an AI agent auto-loads for t
 is `skills/<domain>/<slug>/SKILL.md` with schema-validated frontmatter; its `description:` line is
 written so it loads on the right signals (service, vuln class, error string, port).
 
-**Browse the full table in [`../CATALOG.md`](../CATALOG.md)** (generated). This file is the map.
+**Browse the full table in [`../docs/CATALOG.md`](../docs/CATALOG.md)** (generated). This file is the map.
 
 ## Organized by domain × type × stability × modes
 - **Domain** (the folder): `recon web api mobile cloud network wireless ad ai-ml code-review
@@ -36,7 +36,7 @@ its own skill with no ties, and a stale `routing.json` fails the drift guard in 
 cp skills/_templates/technique.md skills/<domain>/<slug>/SKILL.md
 # fill in frontmatter (strong trigger signals!) + body, then:
 python3 tools/catalog.py validate   # schema check
-python3 tools/catalog.py            # regenerate CATALOG.md + index
+python3 tools/catalog.py            # regenerate docs/CATALOG.md + index
 ```
 House voice: terse, teach-the-mechanism — *when it applies · why it works · method (exact commands
 + flag gloss) · gotchas · verify success*. Authorized use only; no real targets/creds/secrets. See

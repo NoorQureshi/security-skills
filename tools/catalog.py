@@ -3,8 +3,8 @@
 
 Scans skills/<domain>/<slug>/SKILL.md, then:
   validate      -> check every skill's frontmatter against the schema keys/enums
-  catalog       -> write CATALOG.md (browsable) + data/skills_index.json + docs/skills.json
-  coverage      -> write COVERAGE.md (standards mapping)
+  catalog       -> write docs/CATALOG.md (browsable) + data/skills_index.json + docs/skills.json
+  coverage      -> write docs/COVERAGE.md (standards mapping)
   routing       -> write data/routing.json (per-skill trigger utterances + keywords)
   stamp         -> rewrite hardcoded skill counts (total + per-domain) in README/docs
   check-counts  -> non-mutating guard: fail if any hardcoded count is stale (for CI)
@@ -184,7 +184,7 @@ def cmd_catalog():
             modes = ",".join(fm.get("modes") or [])
             out.append(f"| `{fm.get('name','')}` | {fm.get('type','')} | {modes} | {fm.get('severity','')} | {short_desc(fm)} |")
         out.append("")
-    open(os.path.join(ROOT,"CATALOG.md"),"w",encoding="utf-8").write("\n".join(out))
+    open(os.path.join(ROOT,"docs","CATALOG.md"),"w",encoding="utf-8").write("\n".join(out))
     # data/skills_index.json
     os.makedirs(os.path.join(ROOT,"data"), exist_ok=True)
     idx = [{k:s["fm"].get(k) for k in ["name","domain","type","stability","modes","severity","owasp","owasp_llm","owasp_api","mitre","cwe"]} | {"path": s["reldir"]} for s in skills]
@@ -204,7 +204,7 @@ def cmd_catalog():
     } for s in sorted(skills, key=lambda x: (x["fm"].get("domain",""), x["fm"].get("name","")))]
     json.dump({"count":len(skills),"generated_by":"tools/catalog.py","skills":web},
               open(os.path.join(ROOT,"docs","skills.json"),"w"), indent=1)
-    print(f"  wrote CATALOG.md ({len(skills)} skills) + data/skills_index.json + docs/skills.json")
+    print(f"  wrote docs/CATALOG.md ({len(skills)} skills) + data/skills_index.json + docs/skills.json")
     return 0
 
 # ---------------------------------------------------------------------------
@@ -505,8 +505,8 @@ def cmd_coverage():
         for tag, names in t.items():
             out.append(f"| `{tag}` | {', '.join('`'+n+'`' for n in sorted(set(names)))} |")
         out.append("")
-    open(os.path.join(ROOT, "COVERAGE.md"), "w", encoding="utf-8").write("\n".join(out))
-    print(f"  wrote COVERAGE.md")
+    open(os.path.join(ROOT, "docs", "COVERAGE.md"), "w", encoding="utf-8").write("\n".join(out))
+    print(f"  wrote docs/COVERAGE.md")
     return 0
 
 # Files that hardcode the skill count(s) in prose/markup. The stamper keeps them

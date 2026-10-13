@@ -6,7 +6,7 @@ to an attack, it belongs here. One good skill helps every operator who loads Sec
 is on it in the git history.
 
 You don't need to be famous or write ten of them. **One solid skill is a great contribution.**
-Not sure what to write? The **[Roadmap](ROADMAP.md)** lists what we want — the 🟢 items are
+Not sure what to write? The **[Roadmap](docs/ROADMAP.md)** lists what we want — the 🟢 items are
 designed to be good first contributions.
 
 > Security Skills is for **authorized** security work only — pentest engagements, bug-bounty programs you're
@@ -29,11 +29,11 @@ cryptography exploit-dev privesc defense payloads reporting automation tradecraf
 cp skills/_templates/technique.md skills/<domain>/<slug>/SKILL.md
 # (arsenal.md / methodology.md templates also available)
 python3 tools/catalog.py validate   # schema-check your frontmatter
-python3 tools/catalog.py            # regenerate CATALOG.md, COVERAGE.md, docs/skills.json
+python3 tools/catalog.py            # regenerate docs/CATALOG.md, docs/COVERAGE.md, docs/skills.json
 ./tools/check.sh                    # run everything CI runs, before you push
 ```
 
-Commit the regenerated `CATALOG.md`, `COVERAGE.md`, and `docs/skills.json` along with your skill —
+Commit the regenerated `docs/CATALOG.md`, `docs/COVERAGE.md`, and `docs/skills.json` along with your skill —
 CI fails if they're stale.
 
 Fill it in:
@@ -47,8 +47,8 @@ Fill it in:
 - Generalize: no real IPs/creds/secrets. Big payload lists go in a `reference/` subfolder next to
   the `SKILL.md`, not inline.
 
-`CATALOG.md` and `data/skills_index.json` are **generated** — don't hand-edit them; run
-`tools/catalog.py` and commit the regenerated `CATALOG.md`.
+`docs/CATALOG.md` and `data/skills_index.json` are **generated** — don't hand-edit them; run
+`tools/catalog.py` and commit the regenerated `docs/CATALOG.md`.
 
 ## Sourcing skills from writeups & real engagements
 
@@ -69,7 +69,7 @@ mine the **transferable technique**, never to copy the walkthrough. Process:
    description; the `SKILL.md` itself teaches the mechanism generically.
 
 ## Locked core vs learning library
-- 🔒 **Locked core** — `methodology.md`, the `*-arsenal` skills, and the tradecraft/scope skills
+- 🔒 **Locked core** — `docs/methodology.md`, the `*-arsenal` skills, and the tradecraft/scope skills
   (`stability: locked`). Changing these changes behaviour; do it deliberately and explain *why* in
   your PR.
 - ✍️ **Learning library** — every skill tagged `stability: learning`. New techniques land here —
@@ -79,14 +79,14 @@ mine the **transferable technique**, never to copy the walkthrough. Process:
 
 ```bash
 python3 tools/catalog.py validate                                          # skills pass the schema
-python3 tools/catalog.py && git diff --quiet -- CATALOG.md COVERAGE.md && echo "indexes up to date ✓"
+python3 tools/catalog.py && git diff --quiet -- docs/CATALOG.md docs/COVERAGE.md && echo "indexes up to date ✓"
 ```
 
 Checklist:
 - [ ] Skill under the right `skills/<domain>/`, frontmatter passes `tools/catalog.py validate`.
 - [ ] Authorized-use framing; correct `modes:`; no real targets/creds/secrets.
 - [ ] Strong trigger signals in `description:`; mappings (`owasp`/`mitre`/`cwe`) where they apply.
-- [ ] `CATALOG.md` + `COVERAGE.md` regenerated and committed; CI is green.
+- [ ] `docs/CATALOG.md` + `docs/COVERAGE.md` regenerated and committed; CI is green.
 
 ## Style
 Match the house voice: terse, teach-the-mechanism — *tool · why over alternatives · exact command

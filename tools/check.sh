@@ -31,9 +31,9 @@ python3 tools/catalog.py check-counts
 python3 tools/catalog.py catalog >/dev/null
 python3 tools/catalog.py coverage >/dev/null
 python3 tools/catalog.py routing >/dev/null
-if ! git diff --quiet -- CATALOG.md COVERAGE.md docs/skills.json data/routing.json; then
+if ! git diff --quiet -- docs/CATALOG.md docs/COVERAGE.md docs/skills.json data/routing.json; then
   echo "  ✗ generated files are stale — commit these:"
-  git --no-pager diff --stat -- CATALOG.md COVERAGE.md docs/skills.json data/routing.json
+  git --no-pager diff --stat -- docs/CATALOG.md docs/COVERAGE.md docs/skills.json data/routing.json
   exit 1
 fi
 ok "generated indexes up to date"

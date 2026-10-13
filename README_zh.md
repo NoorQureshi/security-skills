@@ -9,7 +9,7 @@
 
 [![CI](https://github.com/NoorQureshi/security-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/NoorQureshi/security-skills/actions/workflows/ci.yml)
 ![skills](https://img.shields.io/badge/skills-206-334155?style=flat-square)
-![domains](https://img.shields.io/badge/domains-20-334155?style=flat-square)
+![domains](https://img.shields.io/badge/domains-23-334155?style=flat-square)
 ![mapped](https://img.shields.io/badge/mapped-OWASP%20%C2%B7%20MITRE%20ATT%26CK-334155?style=flat-square)
 ![routing](https://img.shields.io/badge/routing-618%20trigger%20cases%20CI--verified-334155?style=flat-square)
 ![license](https://img.shields.io/badge/license-MIT-334155?style=flat-square)
@@ -18,7 +18,7 @@
 
 </div>
 
-> **如果你是 AI 智能体:** 阅读 [AGENTS.md](AGENTS.md)(或精简引导 [README_AI.md](README_AI.md))并严格遵循——这个仓库是设计来由你操作的,而不仅仅是供人阅读的。
+> **如果你是 AI 智能体:** 阅读 [AGENTS.md](AGENTS.md)(或精简引导 [README_AI.md](docs/README_AI.md))并严格遵循——这个仓库是设计来由你操作的,而不仅仅是供人阅读的。
 
 <p align="center">
   <img src="docs/screenshots/demo.svg" width="820"
@@ -156,7 +156,7 @@ $ secskills watch                    # runs in the background · stop: secskills
 
 ## 里面有什么
 
-**206 个技能,横跨 23 个领域。** [🔎 搜索全部](https://noorqureshi.github.io/security-skills/catalog.html) · 或浏览 [CATALOG.md](CATALOG.md)。
+**206 个技能,横跨 23 个领域。** [🔎 搜索全部](https://noorqureshi.github.io/security-skills/catalog.html) · 或浏览 [CATALOG.md](docs/CATALOG.md)。
 
 `web` · `api` · `cloud` · `ad` · `network` · `wireless` · `recon` · `mobile` · `ai-ml` · `code-review` · `reverse-engineering` · `ctf` · `hardware` · `cryptography` · `exploit-dev` · `privesc` · `payloads` · `tools` · `defense` · `reporting` · `automation` · `tradecraft` · `social-eng`
 
@@ -204,7 +204,7 @@ $ python3 tools/catalog.py     # regenerate the indexes + stamp counts
 $ ./tools/check.sh             # run everything CI runs, before you push
 ```
 
-想要补充的技能方向:[ROADMAP.md](ROADMAP.md) · 完整指南:[CONTRIBUTING.md](CONTRIBUTING.md) · [行为准则](CODE_OF_CONDUCT.md)。
+想要补充的技能方向:[ROADMAP.md](docs/ROADMAP.md) · 完整指南:[CONTRIBUTING.md](CONTRIBUTING.md) · [行为准则](CODE_OF_CONDUCT.md)。
 
 ## 许可证
 

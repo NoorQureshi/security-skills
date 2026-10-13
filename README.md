@@ -7,7 +7,7 @@
 
 [![CI](https://github.com/NoorQureshi/security-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/NoorQureshi/security-skills/actions/workflows/ci.yml)
 ![skills](https://img.shields.io/badge/skills-206-334155?style=flat-square)
-![domains](https://img.shields.io/badge/domains-20-334155?style=flat-square)
+![domains](https://img.shields.io/badge/domains-23-334155?style=flat-square)
 ![mapped](https://img.shields.io/badge/mapped-OWASP%20%C2%B7%20MITRE%20ATT%26CK-334155?style=flat-square)
 ![routing](https://img.shields.io/badge/routing-618%20trigger%20cases%20CI--verified-334155?style=flat-square)
 ![license](https://img.shields.io/badge/license-MIT-334155?style=flat-square)
@@ -18,7 +18,7 @@
 
 </div>
 
-> **If you are an AI agent:** read [AGENTS.md](AGENTS.md) (or [README_AI.md](README_AI.md) for the short bootstrap) and follow it strictly — this repo is designed to be operated by you, not just read by humans.
+> **If you are an AI agent:** read [AGENTS.md](AGENTS.md) (or [README_AI.md](docs/README_AI.md) for the short bootstrap) and follow it strictly — this repo is designed to be operated by you, not just read by humans.
 
 <p align="center">
   <img src="docs/screenshots/demo.svg" width="820"
@@ -156,7 +156,7 @@ Under Claude Code a bundled hook records commands automatically, so the console 
 
 ## What's inside
 
-**206 skills across 20 domains.** [🔎 Search them all](https://noorqureshi.github.io/security-skills/catalog.html) · or browse [CATALOG.md](CATALOG.md).
+**206 skills across 23 domains.** [🔎 Search them all](https://noorqureshi.github.io/security-skills/catalog.html) · or browse [CATALOG.md](docs/CATALOG.md).
 
 `web` · `api` · `cloud` · `ad` · `network` · `wireless` · `recon` · `mobile` · `ai-ml` · `code-review` · `reverse-engineering` · `ctf` · `hardware` · `cryptography` · `exploit-dev` · `privesc` · `payloads` · `tools` · `defense` · `reporting` · `automation` · `tradecraft` · `social-eng`
 
@@ -205,7 +205,7 @@ $ python3 tools/catalog.py     # regenerate the indexes + stamp counts
 $ ./tools/check.sh             # run everything CI runs, before you push
 ```
 
-Wanted skills: [ROADMAP.md](ROADMAP.md) · full guide: [CONTRIBUTING.md](CONTRIBUTING.md) · [Code of Conduct](CODE_OF_CONDUCT.md).
+Wanted skills: [ROADMAP.md](docs/ROADMAP.md) · full guide: [CONTRIBUTING.md](CONTRIBUTING.md) · [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
