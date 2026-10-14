@@ -23,6 +23,7 @@
 #   ./install.sh --copy       # copy instead of symlink (for throwaway/portable clones)
 #   ./install.sh --quiet      # only print the summary line
 #   ./install.sh --uninstall  # remove only the skills/blocks this installer created
+#   ./install.sh --help       # print this header
 #
 # Re-running is safe: it refreshes our links, replaces (never duplicates) managed
 # blocks, and never touches other skills or your own edits outside the markers.
@@ -48,7 +49,7 @@ while [ $# -gt 0 ]; do
     --uninstall) ACTION="uninstall" ;;
     --dest)      DEST_OVERRIDE="${2:-}"; shift ;;
     --dest=*)    DEST_OVERRIDE="${1#--dest=}" ;;
-    -h|--help)   sed -n '2,28p' "$0"; exit 0 ;;
+    -h|--help)   sed -n '2,29p' "$0"; exit 0 ;;
     "")          : ;;
     *) echo "unknown option: $1" >&2; exit 2 ;;
   esac

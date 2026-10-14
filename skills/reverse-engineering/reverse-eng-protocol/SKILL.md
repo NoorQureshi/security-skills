@@ -56,6 +56,8 @@ numbers and wire types survive even without the `.proto`.
    reproducible decode command or script, and evidence excerpts (raw hex + decoded result,
    redacted of secrets and third-party data).
 
+See [cheatsheet.md](cheatsheet.md) for the layout-pattern table, parser skeleton, and tshark one-liners.
+
 ## Gotchas
 - **Length-field ambiguity** — big- vs little-endian, and header-inclusive vs body-only, are
   the two classic off-by-entire-parse errors; validate against a known sample's byte count.

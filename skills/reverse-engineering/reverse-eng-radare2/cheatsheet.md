@@ -104,3 +104,6 @@ curl -sS --data-binary 'aflj' http://127.0.0.1:9393/cmd
 radius2 -p sample.exe -s stdin 96 -X Incorrect
 radius2 -p sample.exe -s flag 256 -A . flag -B Correct -X Wrong -j
 ```
+
+---
+_Portions adapted from [reverse-skill](https://github.com/zhaoxuya520/reverse-skill) by zhaoxuya520, MIT License._

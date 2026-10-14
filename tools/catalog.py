@@ -525,6 +525,7 @@ def _stamp(apply):
     for s in skills:
         d = s["fm"].get("domain")
         by_domain[d] = by_domain.get(d, 0) + 1
+    ndom = len(by_domain)
     # total-count substitutions: (pattern, replacement) — \d+ is the only thing replaced
     # \s+ (not a literal space) between anchor words, so a line-wrap can't hide a stale count.
     total_subs = [
@@ -535,10 +536,11 @@ def _stamp(apply):
         (r'(links\s+all\s+)\d+(\s+skills)',         rf'\g<1>{total}\g<2>'),
         (r'(All\s+)\d+(\s+Security\s+Skills\s+skills)',   rf'\g<1>{total}\g<2>'),
         (r'(All\s+)\d+(\s+skills\s+across)',        rf'\g<1>{total}\g<2>'),
-        (r'(20\s+domains,\s+)\d+(\s+skills)',       rf'\g<1>{total}\g<2>'),
+        (r'\d+(\s+domains,\s+)\d+(\s+skills)',       rf'{ndom}\g<1>{total}\g<2>'),
         (r'(Search\s+)\d+(\s+skills)',              rf'\g<1>{total}\g<2>'),
         (r'(the\s+)\d+(\s+skills\s+themselves)',    rf'\g<1>{total}\g<2>'),
-        (r'\b\d+(\s+skills\s+across\s+20\s+domains)', rf'{total}\g<1>'),
+        (r'\b\d+(\s+skills\s+across\s+)\d+(\s+domains)', rf'{total}\g<1>{ndom}\g<2>'),
+        (r'(badge/domains-)\d+(-)',               rf'\g<1>{ndom}\g<2>'),   # README shields badge
         (r'\b\d+(\s+offensive\b)',                  rf'{total}\g<1>'),
         (r'\b\d+(\s+trigger-loaded)',               rf'{total}\g<1>'),
     ]

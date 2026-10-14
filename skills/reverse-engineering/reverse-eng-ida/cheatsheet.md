@@ -107,3 +107,6 @@ confirm.
 `entity_query(kind="imports", filter="strcpy|sprintf|gets")` → `xrefs_to` each sink →
 `analyze_function` the calling function → `stack_frame` for buffer sizes → `trace_data_flow`
 backward on the size/pointer argument to prove attacker control.
+
+---
+_Portions adapted from [reverse-skill](https://github.com/zhaoxuya520/reverse-skill) by zhaoxuya520, MIT License._

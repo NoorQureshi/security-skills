@@ -215,3 +215,6 @@ unprivileged callers — just call it as a low-priv user.
 
 Method: pick one, run the whole pipeline yourself, then compare your root cause with the
 public write-up.
+
+---
+_Portions adapted from [reverse-skill](https://github.com/zhaoxuya520/reverse-skill) by zhaoxuya520, MIT License._

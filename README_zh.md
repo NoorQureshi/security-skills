@@ -1,5 +1,3 @@
-🌐 [English](README.md) | 中文
-
 <div align="center">
 
 # 🥷 Security Skills(安全技能库)
@@ -15,6 +13,8 @@
 ![license](https://img.shields.io/badge/license-MIT-334155?style=flat-square)
 
 <sub>[文档](https://noorqureshi.github.io/security-skills/) · [工作原理](https://noorqureshi.github.io/security-skills/interact.html) · [搜索技能](https://noorqureshi.github.io/security-skills/catalog.html) · [参与贡献](CONTRIBUTING.md)</sub>
+
+🌐 [English](README.md) | 中文
 
 </div>
 
@@ -49,7 +49,7 @@
 
 ## 快速开始
 
-> **需要:** 一个 AI 智能体——[Claude Code](https://claude.com/claude-code)、[OpenCode](https://opencode.ai)、Codex、Gemini,或你自己的 API 脚本——外加 `git` 和一个终端。`python3` 仅可选控制台需要。
+> **需要:** 一个 AI 智能体——[Claude Code](https://claude.com/claude-code)、[OpenCode](https://opencode.ai)、Codex、Gemini,或你自己的 API 脚本——外加 `git` 和一个终端。`python3` 仅可选的控制台需要用到。
 
 ```console
 # 1 · install once — links the skills into your agent + puts `secskills` on PATH
@@ -71,7 +71,7 @@ $ secskills watch                    # runs in the background · stop: secskills
 
 ## 用你的智能体运行
 
-在**工作区内**打开你的智能体,用大白话描述任务——匹配的技能会自动加载。
+在**工作区内**打开你的智能体,用大白话描述任务——匹配的技能会自动加载。`./secskills install` 会自动配置它在你机器上检测到的每一个智能体——对有原生 skills 目录的智能体(Claude Code、Kimi Code、Cursor)把技能链接进去,对其余智能体(Codex、Gemini、OpenCode)则在其全局指令文件中添加一小段带有清晰标记的指引块。可以随时重复运行;它是幂等的,`--uninstall` 会精确移除它添加的所有内容。
 
 <details open>
 <summary><b>Claude Code</b></summary>
@@ -88,7 +88,7 @@ $ secskills watch                    # runs in the background · stop: secskills
   ✔ wrote findings/idor-orders.md
 ```
 
-`./secskills install` 已把技能链接到 `~/.claude/skills/`(并以同样方式接入了检测到的其他智能体),所以 Claude Code 能在**任何**文件夹中找到它们,并自动加载符合你请求的那一个。
+`./secskills install` 已把技能链接到 `~/.claude/skills/`(并以同样方式接入了检测到的其他智能体——有原生 skills 目录的就链接进去,否则在全局指令文件中写入一段受管的指引块),所以 Claude Code 能在**任何**文件夹中找到它们,并自动加载符合你请求的那一个。
 </details>
 
 <details>
@@ -172,13 +172,14 @@ $ secskills watch                    # runs in the background · stop: secskills
 | [`recon`](skills/recon) | 9 | 子域名枚举、DNS 分析、内容与 JS 发现、OSINT、GitHub 代码泄露发现、云资产发现、服务枚举、技术栈指纹识别 |
 | [`defense`](skills/defense) | 15 | 检测工程(流水线 + Sigma/ATT&CK)、威胁狩猎、事件响应、DFIR 分诊、网络检测(NSM)、云检测与响应、Active Directory 防御、恶意软件分诊、加固基线、威胁建模、日志分析、紫队演练 、威胁情报、深度取证分析|
 | [`code-review`](skills/code-review) | 15 | 方法论、危险汇聚点(sink)目录、密钥检测、CI/CD 安全、IaC(Terraform/Ansible/K8s)、智能合约(Solidity)、Python、Node.js、PHP、Java/Spring、Go、Ruby/Rails、.NET/C#、C/C++、Rust |
-| [`mobile`](skills/mobile) | 5 | Android 与 iOS 评估、证书固定绕过、deep-link 滥用、WebView 滥用 |
+| [`mobile`](skills/mobile) | 6 | Android 与 iOS 评估、APK 逆向工程(jadx/smali/Frida)、证书固定绕过、deep-link 滥用、WebView 滥用 |
 | [`ad`](skills/ad) | 5 | Kerberoasting / AS-REP、ADCS(ESC1–8)、ACL/DACL 滥用、Kerberos 委派滥用(RBCD / S4U / 胁迫→中继)、横向移动武器库 |
 | [`network`](skills/network) | 8 | 服务攻击、横向与隧道、NTLM 胁迫与中继、密码喷洒与撞库、边界设备与 VPN 攻防、哈希与凭据破解 、邮件安全(钓鱼分析、SPF/DKIM/DMARC)、数据库安全评估|
 | [`wireless`](skills/wireless) | 2 | WPA2-PSK 握手包/PMKID 捕获与破解、evil-twin / 恶意 AP 企业级(PEAP-MSCHAPv2)凭据收割 |
 | [`privesc`](skills/privesc) | 4 | 立足点后的枚举与凭据搜寻、Linux 武器库、GTFOBins(sudo/SUID/capabilities)、Windows 令牌冒用 |
-| [`exploit-dev`](skills/exploit-dev) | 3 | 漏洞链组合与影响放大、PoC 开发、内存破坏利用(ROP / 格式化字符串 / ret2libc) |
-| [`reverse-engineering`](skills/reverse-engineering) | 3 | 原生二进制分诊、反混淆(加壳/JS/WASM/JSVMP)、固件提取与分析 |
+| [`exploit-dev`](skills/exploit-dev) | 4 | 漏洞链组合与影响放大、PoC 开发、内存破坏利用(ROP / 格式化字符串 / ret2libc)、pwn 链(从 bug 到稳定的远程 exploit,堆与内核) |
+| [`reverse-engineering`](skills/reverse-engineering) | 16 | 原生二进制分诊、反混淆(加壳/JS/WASM/JSVMP)、固件、IDA Pro / Ghidra / radare2 / Binary Ninja、.NET / Go / Rust / macOS 逆向、JS 与协议逆向、胖客户端、补丁对比 / N-day 分析、恶意软件分析、EDR 插桩分析 |
+| [`hardware`](skills/hardware) | 3 | UART/JTAG/SWD 调试端口分诊、在电路 flash 转储、SDR / RF 信号分析、OT/ICS 被动评估(Modbus、S7、DNP3) |
 | [`ctf`](skills/ctf) | 6 | CTF 方法论(10 分钟快速分诊)、web / pwn / crypto / rev / forensics 题型攻略 |
 | [`tools`](skills/tools) | 11 | Metasploit、Burp Suite、nuclei、sqlmap、nmap、hashcat、hydra、ffuf、curl、MCP 工具桥接、工具选型 |
 | [`cryptography`](skills/cryptography) | 2 | 弱/教科书式 RSA(JWT RS256、自研签名)、对称预言机(CBC padding、ECB、哈希长度扩展) |

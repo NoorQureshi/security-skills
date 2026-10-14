@@ -1,7 +1,7 @@
 # Roadmap & help wanted
 
 Security Skills grows through contributions. This is the running list of skills we'd love to add — pick
-one, write it (see [CONTRIBUTING.md](CONTRIBUTING.md)), open a PR. Struck-through items are done.
+one, write it (see [CONTRIBUTING.md](../CONTRIBUTING.md)), open a PR. Struck-through items are done.
 
 **New to contributing?** Anything tagged 🟢 is a great first skill — a well-understood, single
 technique with plenty of public references.
@@ -63,7 +63,7 @@ These domains have only a handful of skills; well-scoped additions here are high
   length-extension (`hashpump`)
 - `privesc` (4 skills) — Windows service/ACL privesc beyond `privesc-windows-tokens`, sudo
   misconfig depth, container-host breakout from a root shell
-- `network` (6 skills) — IPv6 rogue-RA/mitm6, SNMP community abuse, LLMNR/NBT-NS poisoning
+- `network` (8 skills) — IPv6 rogue-RA/mitm6, SNMP community abuse, LLMNR/NBT-NS poisoning
 - `automation` (2 skills) — CI-checked payload validation, safe headless-scan orchestration
 
 ## Proposed new domains (need a taxonomy addition — open an issue first)

@@ -3,8 +3,12 @@
 #
 #   secskills new <target> [dir]   create an engagement workspace (anywhere) with the skills wired in
 #   secskills install              expose skills to every detected agent + put `secskills` on PATH
+#   secskills uninstall            remove the installed skills & agent wiring + take `secskills` off PATH
+#   secskills update               git pull the library + refresh the installed skills and links
+#   secskills watch [--stop|--fg]  open the console (runs in the background by default)
 #   secskills list                 list engagements under the current directory
-#   secskills help                 show this help
+#   secskills version              show the installed version
+#   secskills help                 show the full help
 #
 # The workspace can live ANYWHERE — it doesn't need to be inside this repo. Whatever
 # folder you create, opening Claude Code (or Codex/Gemini) there can use the skills,

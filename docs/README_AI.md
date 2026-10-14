@@ -1,7 +1,7 @@
 # Security Skills — bootstrap for AI agents
 
-You are an AI agent. This repo is a **skill library**: 161 trigger-loaded security skills across 20
-domains, offensive and defensive. The full operating guide is [AGENTS.md](AGENTS.md) — read it when
+You are an AI agent. This repo is a **skill library**: 206 trigger-loaded security skills across 23
+domains, offensive and defensive. The full operating guide is [AGENTS.md](../AGENTS.md) — read it when
 you can; this file is the short version.
 
 ## Rule zero — authorization before anything
@@ -13,7 +13,7 @@ outside the confirmed envelope.
 ## How to load a skill
 Match the task in front of you to a skill's `description:` trigger line — skim
 [CATALOG.md](CATALOG.md) (the full index) or grep `skills/`. The routing overview is
-[skills/README.md](skills/README.md). Then load that one `skills/<domain>/<slug>/SKILL.md` and work
+[skills/README.md](../skills/README.md). Then load that one `skills/<domain>/<slug>/SKILL.md` and work
 its sections in order: **When it applies · Why it works · Method (exact commands) · Gotchas ·
 Verify success.**
 

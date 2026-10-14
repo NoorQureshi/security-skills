@@ -22,19 +22,21 @@ one script, `tools/catalog.py`, validates skills and regenerates the catalog.
 
 ## Add a skill (the common PR)
 
-Domains: `recon web api mobile cloud network wireless ad ai-ml code-review reverse-engineering
-cryptography exploit-dev privesc defense payloads reporting automation tradecraft social-eng`.
+Domains: `recon web api mobile cloud network wireless ad ai-ml code-review exploit-dev
+reverse-engineering ctf hardware cryptography privesc defense payloads tools reporting automation
+tradecraft social-eng`.
 
 ```bash
 cp skills/_templates/technique.md skills/<domain>/<slug>/SKILL.md
 # (arsenal.md / methodology.md templates also available)
 python3 tools/catalog.py validate   # schema-check your frontmatter
-python3 tools/catalog.py            # regenerate docs/CATALOG.md, docs/COVERAGE.md, docs/skills.json
+python3 tools/catalog.py            # regenerate the indexes (CATALOG.md, COVERAGE.md, skills.json, routing.json)
 ./tools/check.sh                    # run everything CI runs, before you push
 ```
 
-Commit the regenerated `docs/CATALOG.md`, `docs/COVERAGE.md`, and `docs/skills.json` along with your skill —
-CI fails if they're stale.
+Commit the regenerated `docs/CATALOG.md`, `docs/COVERAGE.md`, `docs/skills.json`, and `data/routing.json`
+along with your skill — CI fails if they're stale. (`data/skills_index.json` is generated too, but
+git-ignored.)
 
 Fill it in:
 - **Frontmatter** — required: `name` (domain-prefixed kebab-case, e.g. `web-ssrf`), `description`,
@@ -47,8 +49,9 @@ Fill it in:
 - Generalize: no real IPs/creds/secrets. Big payload lists go in a `reference/` subfolder next to
   the `SKILL.md`, not inline.
 
-`docs/CATALOG.md` and `data/skills_index.json` are **generated** — don't hand-edit them; run
-`tools/catalog.py` and commit the regenerated `docs/CATALOG.md`.
+`docs/CATALOG.md`, `docs/COVERAGE.md`, `docs/skills.json`, `data/skills_index.json`, and
+`data/routing.json` are all **generated** — don't hand-edit them; run `tools/catalog.py` and commit
+the regenerated files (everything except the git-ignored `data/skills_index.json`).
 
 ## Sourcing skills from writeups & real engagements
 
@@ -79,14 +82,14 @@ mine the **transferable technique**, never to copy the walkthrough. Process:
 
 ```bash
 python3 tools/catalog.py validate                                          # skills pass the schema
-python3 tools/catalog.py && git diff --quiet -- docs/CATALOG.md docs/COVERAGE.md && echo "indexes up to date ✓"
+python3 tools/catalog.py && git diff --quiet -- docs/CATALOG.md docs/COVERAGE.md docs/skills.json data/routing.json && echo "indexes up to date ✓"
 ```
 
 Checklist:
 - [ ] Skill under the right `skills/<domain>/`, frontmatter passes `tools/catalog.py validate`.
 - [ ] Authorized-use framing; correct `modes:`; no real targets/creds/secrets.
 - [ ] Strong trigger signals in `description:`; mappings (`owasp`/`mitre`/`cwe`) where they apply.
-- [ ] `docs/CATALOG.md` + `docs/COVERAGE.md` regenerated and committed; CI is green.
+- [ ] `docs/CATALOG.md` + `docs/COVERAGE.md` + `docs/skills.json` + `data/routing.json` regenerated and committed; CI is green.
 
 ## Style
 Match the house voice: terse, teach-the-mechanism — *tool · why over alternatives · exact command

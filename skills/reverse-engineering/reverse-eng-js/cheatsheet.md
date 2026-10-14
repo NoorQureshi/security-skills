@@ -94,3 +94,6 @@ re-run and confirm the first divergence moved forward; log every patch in `notes
 Minimum evidence to keep per task: a sample of the target request, the initiator stack, the
 suspicious script URLs, key breakpoint locations, the function's real input/output pairs, the
 first-divergence log, and every shim you added with its reason.
+
+---
+_Portions adapted from [reverse-skill](https://github.com/zhaoxuya520/reverse-skill) by zhaoxuya520, MIT License._

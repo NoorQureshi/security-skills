@@ -98,3 +98,6 @@ by itself prove attribution, exploitability, ownership or maliciousness.
 | Source deleted | Preserve the earlier observation and mark current availability |
 | No independent source | Keep the result as `lead`; do not promote it |
 | Remote service unavailable | Record the collection gap and stop; do not fabricate coverage |
+
+---
+_Portions adapted from [reverse-skill](https://github.com/zhaoxuya520/reverse-skill) by zhaoxuya520, MIT License._

@@ -69,3 +69,6 @@ of the protocol rides in HTTP/2 headers (`api-grpc` for the attack side).
 - 16–32 byte field, changes fully on any 1-bit flip → hash or HMAC. Test plain `md5`/`sha256`
   of body, body+header, body+timestamp before assuming a keyed MAC; a keyed HMAC means the key
   is in the client (`reverse-eng-binary-triage` / `reverse-eng-js`).
+
+---
+_Portions adapted from [reverse-skill](https://github.com/zhaoxuya520/reverse-skill) by zhaoxuya520, MIT License._
